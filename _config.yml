@@ -198,3 +198,13 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-paginate
+
+whitelist:
+  - jekyll-redirect-from
+  - jekyll-paginate
+
+# safe: true
