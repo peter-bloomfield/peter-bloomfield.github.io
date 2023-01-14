@@ -4,13 +4,16 @@ title: How to write a good unit test
 date: '2020-06-28 21:23:13'
 tags:
 - testing
+- best-practices
+- unit-tests
+- guidelines
 ---
 
-When used correctly, [unit testing](https://en.wikipedia.org/wiki/Unit_testing) can be essential for ensuring the long-term quality and correctness of your code. However, it's a skill which can take time and discipline to do well, even if you're already an adept programmer. In this post, I'll outline some of the key guidelines which I've found helpful for writing good unit tests.
+When used correctly, [unit testing](https://en.wikipedia.org/wiki/Unit_testing) can be valuable for ensuring the long-term quality and correctness of your code. However, it's a skill which can take time and discipline to do well, even if you're already an adept programmer. In this post, I'll outline some of the key guidelines which I've found helpful for writing good unit tests.
 
 # BRIEF
 
-A good unit test should be:
+A good unit test should be BRIEF:
 
 1. Brief
 2. Reliable
@@ -18,11 +21,11 @@ A good unit test should be:
 4. Explicit
 5. Focused
 
-## 1. Brief
+# 1. Brief
 
 An individual unit test should be brief in two ways: the test code should be **short** and it should execute **quickly**.
 
-### 1.1. Short
+## 1.1. Short
 
 Your unit test shouldn't involve hundreds of lines of code. As with any other area of programming, excessively long code is generally over-complicated, hard to read, and hard to maintain. This can cause mistakes and oversights, reducing the value of the test.
 
@@ -32,7 +35,7 @@ If a unit test is getting quite long, first consider if you could split it up in
 
 Also consider using setup/tear-down functions, [test fixtures](http://sqa.fyicenter.com/FAQ/JUnit/What_Is_a_JUnit_Test_Fixture_.html), and [paramaterised tests](https://www.tutorialspoint.com/junit/junit_parameterized_test.htm), if your test framework supports them.
 
-### 1.2. Quick
+## 1.2. Quick
 
 Most unit tests should take no more than a few milliseconds each to run. A complete set of hundreds or thousands of tests for a whole component should ideally only take a few seconds if you have a reasonably powerful workstation.
 
@@ -44,7 +47,7 @@ Unfortunately, it's not always possible to avoid having some slow tests. Sometim
 
 An easy way to improve overall execution time may be to run the tests in parallel. This can mean several short tests can be executed in one thread while a longer test executes in another. Some test frameworks support this directly, while others can be made to run in parallel via other tools. However, be careful if your tests have any side-effects which might interfere with each other, such as using system resources or writing to a file on disk.
 
-## 2. Reliable
+# 2. Reliable
 
 This is one of the most important guidelines: A unit test must give a consistent result no matter how many times you run it. If a test sometimes fails randomly when it should pass (or sometimes passes when it should fail) then you simply can't trust the result either way, and you potentially can't trust any subsequent changes to it.
 
@@ -56,11 +59,11 @@ You should also ensure that the tests aren't relying on any assumptions about th
 
 Another potential cause of unreliable unit tests is timing. If your test is waiting for something to finish before checking the result then it needs to be confident about how long it will take. Try to avoid making assumptions about the duration as timings can vary, especially if the system is under variable load. My preferred approach (where possible) is to keep checking for the result repeatedly, several times per second. If the result hasn't been received within a very large timeout then the test will fail.
 
-## 3. Independent
+# 3. Independent
 
 Unit tests need two kinds of independence: internal and external.
 
-### 3.1. Internal independence
+## 3.1. Internally independent
 
 Unit tests should be independent of each other. This means you should get the same results no matter what order you execute the tests in. It should also be possible to execute a single unit test on its own.
 
@@ -72,7 +75,7 @@ With that said, it may be OK to share immutable things between tests; i.e. objec
 
 In some areas of programming, such as desktop development, unit tests might affect local resources such as files on disk. In this case, independence between tests may also involve ensuring each test runs in a separate temporary directory. This can avoid potential file conflicts even when the tests are executed in parallel.
 
-### 3.2. External independence
+## 3.2. Externally independent
 
 Where possible, a unit test (including the code it is testing) shouldn't rely on the state or availability of any separate system or resource. This is because an external dependency can make the test unexpectedly slow or unreliable.
 
@@ -84,26 +87,30 @@ Alternatively, if you can't refactor the code being tested then you could run a 
 
 Similar principles may apply to dealing with other external dependencies. However, not all such dependencies can be avoided in all cases. If reliability becomes an issue then it may be better to remove the unit test entirely, relying on coverage from system or acceptance testing instead.
 
-## 4. Explicit
+# 4. Explicit
 
 Another programmer reading your code should be able to see clearly what each unit test is doing. The most important part of this is giving each test a descriptive name. It should identify the piece of code being tested and the expected behaviour. Don't be afraid of ending up with long names.
 
 For example, let's say I have a class called `Widget` which has a member function called `setName()`. I want to test that it throws an exception if the name passed to it is empty. If I was writing a test for this in C++ with [GoogleTest](https://github.com/google/googletest) then it might look like this:
 
-    TEST(Widget, setNameThrowsInvalidArgumentIfSpecifiedNameIsEmpty)
-    {
-        // ...
-    }
+```c++
+TEST(Widget, setNameThrowsInvalidArgumentIfSpecifiedNameIsEmpty)
+{
+    // ...
+}
+```
 
 Alternatively, if I was writing it in JavaScript with the [Jest](https://jestjs.io/) framework then it might look like this:
 
-    describe('Widget', () => {
-        describe('setName', () => {
-            test('throws InvalidArgument if specified name is empty', () => {
-                // ...
-            });
+```javascript
+describe('Widget', () => {
+    describe('setName', () => {
+        test('throws InvalidArgument if specified name is empty', () => {
+            // ...
         });
     });
+});
+```
 
 These are just intended as examples of how I like to structure test names. There are many valid ways to do it. Different frameworks will also have different conventions and restrictions. The important thing is that you include the essential information in some way. Ideally, you want the tests to be able to act like a form of documentation.
 
@@ -115,7 +122,7 @@ Using explicit test data can also be helpful. For example, your assertions could
 
 When a failure happens, the test output should be readable as well so that the problem can be diagnosed. It isn't always possible to control this directly though, depending on your framework. I would suggest deliberately making some tests fail so that you can experiment with it. If anything is unclear then you may be able to adjust which assertions you use, or include additional descriptive information in the output to indicate what went wrong.
 
-## 5. Focused
+# 5. Focused
 
 Each unit test should only test one thing; e.g. one behaviour or condition. This helps ensure that the test code is clean and self-contained. It can also help ensure that you can pin-point the problem very quickly when a test fails.
 
