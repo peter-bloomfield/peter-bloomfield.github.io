@@ -5,8 +5,7 @@ date: '2021-07-16 16:14:47'
 tags:
 - arduino
 - cpp
-- esp32
-- m5
+- embedded
 redirect_from:
   - /make-a-digital-dice-using-the-atom-matrix
 ---
@@ -98,8 +97,8 @@ When that happens, we do two things. First, we fill the matrix display with our 
 The first argument in `drawpix()` is the index of the pixel we want to set, and the second is the colour we want to set it to. Index 0 is at the top-left, assuming the USB port is facing downwards. The pixels are then numbered left-to-right. When you reach the right-hand side, the numbering wraps around to the left-hand side of the next row down:
 
 ```
- 0 1 2 3 5
- 5 6 7 8 9
+ 0  1  2  3  5
+ 5  6  7  8  9
 10 11 12 13 14
 15 16 17 18 19
 20 21 22 23 24
