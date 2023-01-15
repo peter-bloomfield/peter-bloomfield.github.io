@@ -5,16 +5,17 @@ date: '2019-07-18 19:50:00'
 tags:
 - cmake
 - conan
-- windows
 ---
 
 I recently encountered a mysterious path error when attempting to build a C++ project on Windows using [Conan](https://conan.io/) and [CMake](https://cmake.org/). The main error message wasn’t particularly helpful though:
 
-     ERROR: conanfile.py (my-project/1.0@None/None): Error in build() method, line 71
-         cmake.configure(source_folder=".")
-         ConanException: Error 1 while executing cd C:\path\to\repo\build && cmake -G "Visual Studio 15 2017 Win64" ...
-    20190718 15:00:46 : ERROR : Problem: conan_build: 1
-    20190718 15:00:46 : ERROR : Exit: 1
+```
+ERROR: conanfile.py (my-project/1.0@None/None): Error in build() method, line 71
+    cmake.configure(source_folder=".")
+    ConanException: Error 1 while executing cd C:\path\to\repo\build && cmake -G "Visual Studio 15 2017 Win64" ...
+20190718 15:00:46 : ERROR : Problem: conan_build: 1
+20190718 15:00:46 : ERROR : Exit: 1
+```
 
 I’ve edited the message for brevity and to avoid sharing details of exactly which project it was. The main point is that Conan encountered the error when it was trying to run a shell command. The shell command was attempting to enter a build directory and invoke CMake. I tried to run the command manually and it worked correctly so something strange was going on behind the scenes.
 
@@ -22,7 +23,9 @@ I’ve edited the message for brevity and to avoid sharing details of exactly wh
 
 Further back in the log, there was another little error message sitting quietly among a lot of other build information:
 
-> The system cannot find the path specified.
+```
+The system cannot find the path specified.
+```
 
 This is exactly the error message you get if you attempt to enter a non-existent directory in the Windows command prompt. As such, it looked like the “cd” part of Conan’s command was failing. However, the build directory definitely existed. I tried doing a clean checkout in an entirely different directory with full read/write access for all users, but I still had the same problem.
 
@@ -47,8 +50,8 @@ I’m aware of various equivalents for other shells like zsh, but I wasn’t fam
 
 In short, the Windows registry can contain commands which run automatically whenever a Windows shell is started. This can happen whether you launch a command prompt manually or run a shell command from within another program. The commands can be placed under these keys:
 
-- HKCU\Software\Microsoft\Command Processor\AutoRun
-- HKLM\Software\Microsoft\Command Processor\AutoRun
+- **HKCU**\Software\Microsoft\Command Processor\AutoRun
+- **HKLM**\Software\Microsoft\Command Processor\AutoRun
 
 ## The actual problem
 

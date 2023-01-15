@@ -18,15 +18,19 @@ This post will explain how to enable this option if you're managing your build u
 
 To fix the `__cplusplus` macro for a single library or executable, add this to your CMake file:
 
-    if(MSVC)
-        target_compile_options(mytarget PUBLIC "/Zc:__cplusplus")
-    endif()
+```cmake
+if(MSVC)
+    target_compile_options(mytarget PUBLIC "/Zc:__cplusplus")
+endif()
+```
 
 You should typically put it just after your target has been defined; i.e. `add_executable()` or `add_library()`. Replace `mytarget` with the name of the CMake target you want to affect.
 
 Note that you will also need to ensure you've specified which version of the C++ standard you're using. For example, if you're using C++14:
 
-    target_compile_features(mytarget PUBLIC cxx_std_14)
+```cmake
+target_compile_features(mytarget PUBLIC cxx_std_14)
+```
 
 Again, replace `mytarget` with the name of your CMake target. You may already have specified the C++ standard somewhere else, in which case you don't need to do it again.
 
@@ -34,16 +38,20 @@ Again, replace `mytarget` with the name of your CMake target. You may already ha
 
 If you want to fix the macro for multiple targets at the same time then you can do this instead:
 
-    if(MSVC)
-        string(APPEND CMAKE_CXX_FLAGS " /Zc:__cplusplus")
-    endif()
+```cmake
+if(MSVC)
+    string(APPEND CMAKE_CXX_FLAGS " /Zc:__cplusplus")
+endif()
+```
 
 This should affect any CMake target which is specified in the same CMake file or a sub-directory, or which includes the CMake file. You may find it helpful to put it in the root CMakeLists.txt file for your entire project.
 
 As above, you will need to ensure the C++ standard has been specified. If that's not already been done elsewhere, you can specify C++14 for multiple targets like this:
 
-    set(CMAKE_CXX_STANDARD 14)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+```cmake
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+```
 
 # Example project
 
@@ -51,36 +59,46 @@ To see the macro in action, create a folder for a simple test project. Within it
 
 Put this in `main.cpp`:
 
-    #include <iostream>
-    int main()
-    {
-        std::cout << " __cplusplus=" <<__ cplusplus << std::endl;
-    }
+```c++
+#include <iostream>
+int main()
+{
+    std::cout << " __cplusplus=" <<__ cplusplus << std::endl;
+}
+```
 
 Put this in `CMakeLists.txt`:
 
-    cmake_minimum_required(VERSION 3.1)
-    project(demo CXX)
-    add_executable(demo main.cpp)
-    target_compile_features(demo PUBLIC cxx_std_14)
-    if(MSVC)
-        target_compile_options(demo PUBLIC "/Zc:__cplusplus")
-    endif()
+```cmake
+cmake_minimum_required(VERSION 3.1)
+project(demo CXX)
+add_executable(demo main.cpp)
+target_compile_features(demo PUBLIC cxx_std_14)
+if(MSVC)
+    target_compile_options(demo PUBLIC "/Zc:__cplusplus")
+endif()
+```
 
 Open a Windows Command Prompt and navigate to the project folder you just created. We're going to do an out-of-source build, so create and navigate into a sub-folder:
 
-    mkdir build
-    cd build
+```console
+mkdir build
+cd build
+```
 
 From there, run these commands to build and run the example program:
 
-    cmake ..
-    cmake --build .
-    Debug\demo.exe
+```console
+cmake ..
+cmake --build .
+Debug/demo.exe
+```
 
 After the last line, you should see this:
 
-    __cplusplus=201402
+```
+__cplusplus=201402
+```
 
 In `CMakeLists.txt`, try changing `cxx_std_14` to `cxx_std_17`, and the output should change accordingly when you build and run the project. You could also try commenting-out the `target_compile_options` line to see the default macro value.
 
@@ -90,6 +108,8 @@ If you're creating a library to be packaged by [Conan](https://conan.io/) then y
 
 Open your Conan recipe file (typically conanfile.py), and add the following to the `package_info()` method:
 
-    if self.settings.compiler == "Visual Studio":
-        self.cpp_info.cxxflags.append("/Zc:__cplusplus")
+```python
+if self.settings.compiler == "Visual Studio":
+    self.cpp_info.cxxflags.append("/Zc:__cplusplus")
+```
 

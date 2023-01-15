@@ -5,7 +5,6 @@ date: '2016-01-18 18:15:45'
 tags:
 - python
 - unicode
-- utf-16
 ---
 
 I’ve been using Python scripts to automatically edit and output Windows Resource files (.rc) for C++ projects in Visual Studio 2013. When handling Unicode, Windows and Visual Studio always want little endian UTF-16 encoding, and the resource file should always start with the Unicode BOM (Byte Order Mark). However, despite the promises in the documentation, I found that Python wasn’t outputting the BOM automatically.
@@ -26,10 +25,12 @@ According to the Python documentation on [reading and writing Unicode data](http
 
 From this, it sounds like any UTF-16 or UTF-32 encoding will automatically take of the BOM. However, try running the following code in a Python 3 script:
 
-    with open("output.txt", mode="w", encoding="utf-16-le") as f:
-        f.write("Hello World.")
+```python
+with open("output.txt", mode="w", encoding="utf-16-le") as f:
+    f.write("Hello World.")
+```
 
-Open the output file in an editor which reports the encoding, such as the excellent [Notepad++](https://notepad-plus-plus.org/) on Windows. You’ll see UTF-16 (or UCS-2) Little Endian, but it will say there is no BOM.
+Open the output file in an editor which reports the encoding, such as [Notepad++](https://notepad-plus-plus.org/) on Windows. You’ll see UTF-16 (or UCS-2) Little Endian, but it will say there is no BOM.
 
 ## Where did the BOM go?
 
@@ -37,9 +38,9 @@ To answer that, look at the encoding argument in the code snippet above. It’s 
 
 Instead, change the encoding to `utf-16`. This lets Python use the Operating System’s endianness, and it assumes that a BOM is therefore necessary. Here’s the modified code snippet:
 
-    with open("output.txt", mode="w", encoding="utf-16") as f:
-        f.write("Hello World.")
+```python
+with open("output.txt", mode="w", encoding="utf-16") as f:
+    f.write("Hello World.")
+```
 
 Once again, run that as a Python 3 script and then open the output file. Assuming you’re running on a little endian system (which should apply to anything running a Windows OS), the encoding should show up as UTF-16 (or UCS-2) Little Endian with BOM.
-
-<!--kg-card-end: markdown-->

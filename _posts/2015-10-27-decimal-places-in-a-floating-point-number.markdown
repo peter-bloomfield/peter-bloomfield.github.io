@@ -2,9 +2,9 @@
 layout: post
 title: Decimal places in a floating point number
 date: '2015-10-27 19:25:48'
+math: true
 tags:
 - cpp
-- maths
 ---
 
 Floating point numbers are a mainstay of programming in areas such as games, graphics, and simulation. On the whole, they are easy and intuitive to use. However, they have certain quirks and issues to be aware of. For example, their representation is inherently flexible and often approximate. This means there isn't a simple answer to the question of how many decimal places they can hold.
@@ -31,17 +31,19 @@ In C++, this information can be found by using the [`std::numeric_limits`](http:
 
 The **digits** member gives the number of digits in the mantissa. For the standard types, this should always be the number of binary bits. However, there is the possibility for a different base to be used. If so, it’s specified in the **radix** member. The number of significant decimal figures can be calculated using this formula:
 
-    digits * ln(2) / ln(10)
+$$ digits ∗ ln(2) / ln(10) $$
 
 The result is not likely to be a whole number, so it must be rounded up to find the answer. `ln()` is the natural logarithm, which is called `std::log()` in C++. The 2 refers to the radix of the original number (binary in this case), and 10 refers to the radix of the desired result (decimal in this case). It’s useful to know that this formula can be more generally applied to calculate how many digits of any radix number would be required to represent a number in another radix.
 
 Here is the C++ code to calculate this:
 
-    int figures = static_cast<int>( std::ceil(
-        numeric_limits::digits *
-        std::log(numeric_limits::radix) /
-        std::log(10.0)
-    ));
+```cpp
+int figures = static_cast<int>( std::ceil(
+    numeric_limits::digits *
+    std::log(numeric_limits::radix) /
+    std::log(10.0)
+));
+```
 
 [**Click here** to see this in an example program on ideone](https://ideone.com/Dyx23W).
 
@@ -58,24 +60,28 @@ Both of them are written with 20 decimal places. However, the second one would o
 
 This program shows an example of this in action:
 
-    #include <iostream>
-    #include <iomanip>
-    using namespace std;
-    int main() {
-        float f1 = 0.12345123451234512345f;
-        float f2 = 0.00000000000000012345f;
-        cout << fixed << setprecision(20);
-        cout << "f1 = " << f1 << endl;
-        cout << "f2 = " << f2;
-        return 0;
-    }
+```c++
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main() {
+    float f1 = 0.12345123451234512345f;
+    float f2 = 0.00000000000000012345f;
+    cout << fixed << setprecision(20);
+    cout << "f1 = " << f1 << endl;
+    cout << "f2 = " << f2;
+    return 0;
+}
+```
 
 [**Click here** to run this program at ideone](https://ideone.com/j3xLPI).
 
 The output from the above program should be something like:
 
-    f1 = 0.12345123291015625000
-    f2 = 0.00000000000000012345
+```
+f1 = 0.12345123291015625000
+f2 = 0.00000000000000012345
+```
 
 As you can see, only the first 8 digits of f1 are correct, which corresponds to our finding above that float should support **7 or 8 significant figures in decimal**.
 
@@ -107,49 +113,51 @@ To do this using C++, we turn once again to the `numeric_limits` traits. The `mi
 
 The following function calculates the hypothetical maximum number of places a number could represent after the point. For flexibility, it allows it to be calculated in any radix (base). Note that it deliberately returns 0 for integer types because they don’t contain a point.
 
-    template <typename T_type, int T_radix>
-    int getMaxPlaces()
-    {
-        static_assert(
-            T_radix > 1,
-            "Radix must be at least 2."
-        );
-        static_assert(
-            std::numeric_limits<T_type>::is_specialized,
-            "Numeric limits traits info not found."
-        );
-        // Integers contain no point.
-        if (std::numeric_limits<T_type>::is_integer)
-            return 0;
-        // Maximum number of places in the native radix.
-        const int places =
-            std::abs(std::numeric_limits<T_type>::min_exponent) +
-            std::numeric_limits<T_type>::digits;
-        // Special case: If the requested radix matches the underlying radix
-        // specified in traits then no base conversion is necessary.
-        if (T_radix == std::numeric_limits<T_type>::radix)
-            return places;
-        // Convert the number of places to the requested radix.
-        return static_cast<int>( std::ceil(
-            places *
-            std::log(std::numeric_limits<T_type>::radix) /
-            std::log(T_radix)
-        ));
-    }
+```cpp
+template <typename T_type, int T_radix>
+int getMaxPlaces()
+{
+    static_assert(
+        T_radix > 1,
+        "Radix must be at least 2."
+    );
+    static_assert(
+        std::numeric_limits<T_type>::is_specialized,
+        "Numeric limits traits info not found."
+    );
+    // Integers contain no point.
+    if (std::numeric_limits<T_type>::is_integer)
+        return 0;
+    // Maximum number of places in the native radix.
+    const int places =
+        std::abs(std::numeric_limits<T_type>::min_exponent) +
+        std::numeric_limits<T_type>::digits;
+    // Special case: If the requested radix matches the underlying radix
+    // specified in traits then no base conversion is necessary.
+    if (T_radix == std::numeric_limits<T_type>::radix)
+        return places;
+    // Convert the number of places to the requested radix.
+    return static_cast<int>( std::ceil(
+        places *
+        std::log(std::numeric_limits<T_type>::radix) /
+        std::log(T_radix)
+    ));
+}
+```
 
 [**Click here** to see this in action on ideone](https://ideone.com/NNsHwn).
 
 Using the function above, you’ll typically find it saying that a float could usefully represent 45 decimal places, and double up to 324. Here’s a very brief snippet of code you could try running to see this happening:
 
-    float f = 0.0000000000000000000000000000000000000000123456789f;
-    std::cout << std::fixed << std::setprecision(50) << f << std::endl;
+```cpp
+float f = 0.0000000000000000000000000000000000000000123456789f;
+std::cout << std::fixed << std::setprecision(50) << f << std::endl;
+```
 
 The floating point literal has 50 decimal places. However, running this on Visual Studio 2015, it’s only printed correctly up to the 5 (i.e. the first 45 digits). We proved earlier that the mantissa is capable of holding more than 5 digits, so this is an example of a sub-normal.
 
 ## Conclusion
 
-We found that in C++, you could _hypothetically_ reach 45 decimal places for float, and 324 decimal places for double. Unfortunately though, this is only possible in fairly specific cases where the majority of decimal places are actually zeroes. In practice, most numbers will be very inaccurate by the time you reach that many digits. Hopefully, these values at least provide a useful guideline for what is potentially representable with reasonable accuracy.
+We found that in C++, you could *hypothetically* reach 45 decimal places for float, and 324 decimal places for double. Unfortunately though, this is only possible in fairly specific cases where the majority of decimal places are actually zeroes. In practice, most numbers will be very inaccurate by the time you reach that many digits. Hopefully, these values at least provide a useful guideline for what is potentially representable with reasonable accuracy.
 
 An interesting final side note is that floating point numbers representing more decimal places [have actually been observed](https://randomascii.wordpress.com/2012/03/08/float-precisionfrom-zero-to-100-digits-2/). These are exceptional cases though, and are not likely to be mathematically useful.
-
-<!--kg-card-end: markdown-->

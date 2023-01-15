@@ -21,7 +21,9 @@ You could manually edit the charset specified in the \*.pot file. You could also
 
 There are two things you need to do. First, you need to specify the following in the `xgettext` command line option:
 
-    --from-code=UTF-8
+```
+--from-code=UTF-8
+```
 
 This tells the program what encoding it should expect to see when extracting string literals. Unfortunately though, it’s not enough on its own. If all the characters encountered are ASCII then it basically seems to ignore your UTF-8 instruction.
 
@@ -29,8 +31,10 @@ The second thing you need to do is ensure that xgettext extracts at least one UT
 
 Here’s the contents of the file, which obviously needs to be encoded as UTF-8:
 
-    // TRANSLATOR Ignore this entry.
-    translate(" __IGNORE__", "ø");
+```
+// TRANSLATOR Ignore this entry.
+translate(" __IGNORE__", "ø");
+```
 
 I’m working with C++, although the language doesn’t matter too much in this case since the code is deliberately invalid. (The compiler wouldn’t be happy about the fact that there’s a statement outside a function, although `xgettext` doesn’t care.)
 
@@ -38,12 +42,12 @@ As I mentioned above, I’m using the Boost Locale functionality at runtime for 
 
 After running `xgettext`, the new entry in the \*.pot file is as follows:
 
-    #. TRANSLATOR Ignore this entry.
-    #: C:\example\force-utf-8.cpp:2
-    msgctxt " __IGNORE__"
-    msgid "ø"
-    msgstr ""
+```
+#. TRANSLATOR Ignore this entry.
+#: C:\example\force-utf-8.cpp:2
+msgctxt " __IGNORE__"
+msgid "ø"
+msgstr ""
+```
 
 In the header data, the charset is now specified as UTF-8. This is successfully carried over into the \*.po files by `msginit` and `msgmerge`.
-
-<!--kg-card-end: markdown-->
