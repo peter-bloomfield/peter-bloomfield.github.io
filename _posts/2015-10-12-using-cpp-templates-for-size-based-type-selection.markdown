@@ -4,8 +4,6 @@ title: Using C++ templates for size-based type selection
 date: '2015-10-12 18:36:02'
 tags:
 - cpp
-- meta-programming
-- templates
 ---
 
 The standardisation of size-specific integer types in C/C++ is extremely useful for portability. That is, when you use types like `uint16_t` and `int32_t`, you know exactly what size of data type you’re getting (assuming your compiler supports it). This isn’t the case with the more traditional types like `short` and `int` whose sizes can vary from one compiler to another.
@@ -16,28 +14,32 @@ However, what happens if you want to write templated code which automatically se
 
 This makes use of a `using` declaration, which is like a templated version of `typedef`. Within it are three nested conditional templates:
 
-    template <std::uint8_t T_numBytes>
-    using UintSelector =
-        typename std::conditional<T_numBytes == 1, std::uint8_t,
-            typename std::conditional<T_numBytes == 2, std::uint16_t,
-                typename std::conditional<T_numBytes == 3 || T_numBytes == 4, std::uint32_t,
-                    std::uint64_t
-                >::type
+```cpp
+template <std::uint8_t T_numBytes>
+using UintSelector =
+    typename std::conditional<T_numBytes == 1, std::uint8_t,
+        typename std::conditional<T_numBytes == 2, std::uint16_t,
+            typename std::conditional<T_numBytes == 3 || T_numBytes == 4, std::uint32_t,
+                std::uint64_t
             >::type
-        >::type;
+        >::type
+    >::type;
+```
 
 Example usage:
 
-    UintSelector<6> var = 185;
+```cpp
+UintSelector<6> var = 185;
+```
 
 A more complete example is available [here on ideone](http://ideone.com/UAK86I).
 
 The relationships between sizes and types is:
 
-- 1 byte =\> std::uint8\_t
-- 2 bytes =\> std::uint16\_t
-- 3-4 bytes =\> std::uint32\_t
-- 5+ bytes =\> std::uint64\_t
+- 1 byte &rarr; `std::uint8_t`
+- 2 bytes &rarr; `std::uint16_t`
+- 3-4 bytes &rarr; `std::uint32_t`
+- 5+ bytes &rarr; `std::uint64_t`
 
 One limitation to note is that this only goes up to 8 bytes (64 bits). Anything higher will still give you `std::uint64_t`. If you want to handle larger sizes then you’ll need some other approach, such as using an array instead of a scalar type. Alternatively, you may want the compiler to emit an error if anything larger is attempted.
 
@@ -45,13 +47,15 @@ One limitation to note is that this only goes up to 8 bytes (64 bits). Anything 
 
 The workhorse of the code is the conditional template. It was introduced in C++11, although it was certainly possible to implement it manually before that. The form is as follows:
 
-    std::conditional<bool condition, typename ifTrue, typename ifFalse>
+```cpp
+std::conditional<bool condition, typename ifTrue, typename ifFalse>
+```
 
 The conditional class has a typedef inside named `type`. If the condition is true then the typedef is defined as the `ifTrue` template parameter. Otherwise, it is defined as `ifFalse`. (These are arbitrary names which aren’t specified in the standard.) In the underlying code, this could be done through partial template specialisation.
 
 As in the example above, the conditionals can be nested. If the condition is true then it resolves to a specific type. Otherwise, it resolves to another conditional, and so on until you reach the final conditional in the chain.
 
-Note that you have must provide a valid `ifFalse` template parameter. If you only want `ifTrue` then you might want to look into [std::enable\_if](http://en.cppreference.com/w/cpp/types/enable_if) instead.
+Note that you must provide a valid `ifFalse` template parameter. If you only want `ifTrue` then you might want to look into [std::enable\_if](http://en.cppreference.com/w/cpp/types/enable_if) instead.
 
 One important thing to be aware of in the code above is the need to prefix the conditional with `typename`. Without it, you’ll get a compiler error saying something like “dependent name is not a type”. [This Stack Overflow question](http://stackoverflow.com/questions/610245/where-and-why-do-i-have-to-put-the-template-and-typename-keywords) has some excellent information about this issue in the answers.
 
@@ -66,5 +70,3 @@ There are other places this could come in handy too, such as selecting an integr
 ## Other approaches
 
 In most cases, it would make more sense just to specify the desired type directly in code or as a template parameter. The only real benefit I can think of for size-based selection is ensuring a particular category of type is used, such as signed vs. unsigned. You can currently use [type traits](http://en.cppreference.com/w/cpp/header/type_traits) and [static asserts](http://en.cppreference.com/w/cpp/language/static_assert) to guard against that though, and hopefully we might see [concepts](https://en.wikipedia.org/wiki/Concepts_(C%2B%2B)) make a come-back in a future version of the standard.
-
-<!--kg-card-end: markdown-->
