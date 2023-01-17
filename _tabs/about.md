@@ -2,6 +2,14 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 1
+redirect_from:
+  - /about-me
+  - /career
+  - /job-history
+  - /qualifications
+  - /portfolio
+  - /research
+  - /music
 ---
 
 
