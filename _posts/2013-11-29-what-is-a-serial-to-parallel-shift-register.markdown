@@ -9,7 +9,7 @@ tags:
 
 A serial-to-parallel shift register (or SIPO: Serial In Parallel Out) lets you take a series of signals on one output and split them up into several separate outputs in parallel. For example, if you don’t have enough GPIO pins on your Raspberry Pi, Arduino, or other computer/microcontroller, you may be able to use a shift register to add more.
 
-In this post, I’ll be looking at the 74HC595, which is an 8-bit SIPO IC; i.e. it gives you 8 outputs. The advantage of this chip over some dedicated port expanders is that it doesn’t require a complex protocol like I2C or SPI, and it doesn’t need a particular clock speed. That means you can control it with pretty much any digital output channels, and it’s very easy to write simple software to communicate with it.
+In this post, I’ll be looking at the 74HC595, which is an 8-bit SIPO integrated circuit; i.e. it gives you 8 outputs. The advantage of this chip over some dedicated port expanders is that it doesn’t require a complex protocol like I2C or SPI, and it doesn’t need a particular clock speed. That means you can control it with pretty much any digital output channels, and it’s very easy to write simple software to communicate with it.
 
 ## What does a shift register do?
 
@@ -19,7 +19,8 @@ In the case of a serial-to-parallel shift register, you push data onto the begin
 
 The transfer copies all the data in the shift register over into a separate storage register. This will usually be connected to a series of outputs which all get updated simultaneously. This allows the outputs to hold the current values steady while you re-fill the shift register with the next block of data. You then trigger another transfer to update the outputs, and so on.
 
-![Shift register functional overview]( __GHOST_URL__ /content/images/2019/09/shift-register-overview.png)
+![Diagram showing how a serial-to-parallel shift register functions](/assets/img/migrated/shift-register-overview.png){: width="768" height="313" :}
+*Functional overview of a serial-to-parallel shift register*
 
 This makes it great for expanding outputs from something like a Raspberry Pi or Arduino. You use 3 of your device’s output pins to give data in serial to the register. It gets converted to parallel, letting you treat it as though you’ve got 8 or 16 (or more) individual output pins. It’s inevitably slower than having actual output pins, but it is effective for many purposes.
 
@@ -29,7 +30,8 @@ One of the great things about these components is that you can ‘daisy-chain’
 
 The 74HC595 is controlled by a data input pin (DS), a shift clock pin (SHCP or SRCLK), and a storage clock pin (STCP or RCLK). They are all active high. In the case of the clock pins, you’ll need to make sure they’re pulled properly low (not floating) in between clock pulses, otherwise you’ll get odd behaviour.
 
-![74HC595 shift register pin-out]( __GHOST_URL__ /content/images/2019/09/74hc595-pin-out.png)
+![Pin-out diagram of a 74HC595 shift register](/assets/img/migrated/shift-register-74hc595-pin-out.png){: width="188" height="481" :}
+*Pin-out diagram of a 74HC595 shift register*
 
 When you want to move data onto the register, first set the data input pin (DS) high or low, representing the bit you want to send (i.e. 1 or 0). After that, briefly set the shift clock pin (SHCP) high, and then bring it back to low. Repeat this process as many times as you need to get data where you want it on the register (typically 8 times to fill a single register).
 
@@ -71,7 +73,8 @@ The other potential limitation is speed. As you increase the number of registers
 
 I connected a pair of daisy-chained shift registers to my Raspberry Pi. That allowed me to turn 3 GPIO pins into 14 separate outputs, which I used to control a 4-digit numeric display. (The last 2 outputs on the shift registers weren’t needed.)
 
-![Shift register example project]( __GHOST_URL__ /content/images/2019/09/pi-shift-register-example.jpg)
+![Shift register example project](/assets/img/migrated/pi-shift-register-example.jpg)
+*Example project using a shift register to run a numeric display*
 
 From right to left, the major components are:
 
@@ -87,7 +90,8 @@ The second difficulty was that you can’t show multiple digits at the same time
 
 You can take a look at the rough circuit diagram below. It may not be entirely accurate though (especially the resistor values). **Please** note that I was just tinkering with a few components I had lying around. This is not the best way to build a circuit like this, so I absolutely cannot guarantee the safety of your components if you copy it!
 
-![Shift register example circuit]( __GHOST_URL__ /content/images/2019/09/pi-shift-register-circuit.png)
+![Circuit diagram involving a shift register](/assets/img/migrated/pi-shift-register-circuit.png)
+*Example circuit using a serial-to-parallel shift register*
 
 IC1 and IC2 are the shift registers, and IC3 is the numeric display. Connections DS, STCP, and SHCP go to GPIO pins on the Raspberry Pi.
 
