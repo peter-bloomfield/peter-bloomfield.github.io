@@ -4,6 +4,8 @@ title: 'OpenGL gotcha: remember light 0'
 date: '2009-11-06 00:14:20'
 tags:
 - opengl
+redirect_from:
+- /opengl-gotcha-remember-gl_light0
 ---
 
 I was experimenting with some simple scene geometry and lighting in OpenGL today, and I stumbled into the same pitfall I’ve stumbled into several times before. (You’d think I would have learned by now!) While moving around the scene, I found that the lighting on surfaces appeared to change depending on my camera angle. If I looked at a polygon square-on, it seemed much brighter than if I was looking slightly away from it.
