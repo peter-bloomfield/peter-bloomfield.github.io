@@ -9,7 +9,9 @@ tags:
 
 Like many C++ linker errors and warnings, LNK4098 is a little vague and cryptic at first. It comes in different flavours, but it will often have other errors with it, such as LNK2005 (“symbol already defined”). Here’s one I got recently in VC++ 2010 Express:
 
-    LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+```
+LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+```
 
 You might find “LIBCMTD” replaced with other things, such as “LIBC” or “LIBCD”. I recommend taking a little time to understand what’s going on, as knowledge really is power for programmers, and it will hopefully help you avoid similar problems in the future.
 
@@ -27,12 +29,12 @@ Each one also has a debug and non-debug (or ‘release’) version, depending on
 
 In other words, there are 6 options:
 
-- LIBC: Single threaded
-- LIBCD: Single threaded debug
-- LIBMCT: Multi threaded
-- LIBCMTD: Multi threaded debug
-- MSVCRT: Multi threaded DLL
-- MSVCRTD: Multi threaded debug DLL
+- `LIBC`: Single threaded
+- `LIBCD`: Single threaded debug
+- `LIBMCT`: Multi threaded
+- `LIBCMTD`: Multi threaded debug
+- `MSVCRT`: Multi threaded DLL
+- `MSVCRTD`: Multi threaded debug DLL
 
 ## How do I fix it?
 
@@ -44,7 +46,7 @@ If your dependencies are internal (i.e. different projects in your solution) the
 
 ## How do I find the configuration option?
 
-Open up the Project Properties dialog for the project you want to configure. Try right-clicking it in the “Solution Explorer”, then clicking “Properties”. You should find the “Runtime library” option in “Configuration Properties -\> C/C++ -\> Code Generation” section.
+Open up the Project Properties dialog for the project you want to configure. Try right-clicking it in the “Solution Explorer”, then clicking “Properties”. You should find the “Runtime library” option in “Configuration Properties &rarr; C/C++ &rarr; Code Generation” section.
 
 Remember that you will need to set the option for each build configuration (typically Debug and Release), and possibly for each target platform too. You can select the build configuration from the top-left of the Project Properties dialog. Make sure you only use the debug version while in debug mode as it tends to generate much bigger and slower code.
 
@@ -57,5 +59,3 @@ Admittedly, there may occasionally be situations where this kind of workaround i
 ## Where can I get more information?
 
 This is a really common problem. A quick search online for “LNK4098” should give you loads of information.
-
-<!--kg-card-end: markdown-->

@@ -2,15 +2,15 @@
 layout: post
 title: DNS misconfiguration in Plesk
 date: '2010-11-06 02:18:32'
-tags:
-- web-hosting
 ---
 
 I run a VPS (Virtual Private Server) through the 1&1 webhost, and was trying to create a new subdomain today using the Plesk 9.5.2 admin interface. This is an easy task which I have done many times before, but this time it failed, and gave me the following error message:
 
-    Service is not available now, probably your Plesk is misconfigured.
-    Contact Your provider for details.
-    Internal Plesk error occurred: dnsmng::update() failed: dnsmng failed: dnsmng: Empty fields 'host' or 'opt' in PTR record
+```
+Service is not available now, probably your Plesk is misconfigured.
+Contact Your provider for details.
+Internal Plesk error occurred: dnsmng::update() failed: dnsmng failed: dnsmng: Empty fields 'host' or 'opt' in PTR record
+```
 
 Panic! I had no idea what to do, and web-searches provided very little information. However, I was able to find enough information to figure out the solution.
 
@@ -38,5 +38,3 @@ In my case, the missing value was just the IP address of my VPS (I only have one
 ## Done!
 
 Once again, I’m afraid I don’t know exactly what caused the problem. Regardless, the solution seems to be fixing the empty data in the `dns_recs` table. If you find a different (perhaps better) solution to the same problem, then please share it in the comments below.
-
-<!--kg-card-end: markdown-->

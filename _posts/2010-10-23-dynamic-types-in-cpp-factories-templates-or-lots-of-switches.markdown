@@ -4,7 +4,6 @@ title: 'Dynamic types in C++: factories, templates, or lots of switches?'
 date: '2010-10-23 23:00:19'
 tags:
 - cpp
-- meta-programming
 ---
 
 While doing some C++ programming today, I was faced with a design decision. My code had to be able to create and delete objects of various types, dynamically and on-demand at run-time. That’s easy if you’re working with a loosely-typed language such as PHP, but it’s a different story when you’re working with C++.
@@ -27,18 +26,22 @@ The problem is fairly simple: how do I use a numeric identifier (from an enumera
 
 For example, let’s say we have the following enumeration:
 
-    enum MyType
-    {
-     MT_TYPE_A,
-     MT_TYPE_B,
-     MT_TYPE_C
-    };
+```cpp
+enum MyType
+{
+    MT_TYPE_A,
+    MT_TYPE_B,
+    MT_TYPE_C
+};
+```
 
 Those identifiers correspond to the following classes:
 
-    class CTypeA : public SomeBaseClass { ... };
-    class CTypeB : public SomeBaseClass { ... };
-    class CTypeC : public SomeBaseClass { ... };
+```cpp
+class CTypeA : public SomeBaseClass { ... };
+class CTypeB : public SomeBaseClass { ... };
+class CTypeC : public SomeBaseClass { ... };
+```
 
 If I’m given a value from `MyType`, how does my code know which class to instantiate?
 
@@ -46,16 +49,18 @@ If I’m given a value from `MyType`, how does my code know which class to insta
 
 Here’s the very basic and very simple solution, which is entirely adequate in many cases:
 
-    SomeBaseClass * createClass( MyType mt )
+```cpp
+SomeBaseClass * createClass( MyType mt )
+{
+    switch (mt)
     {
-        switch (mt)
-        {
-        case MT_TYPE_A: return new CTypeA();
-        case MT_TYPE_B: return new CTypeB();
-        case MT_TYPE_C: return new CTypeC();
-        }
-        return 0;
+    case MT_TYPE_A: return new CTypeA();
+    case MT_TYPE_B: return new CTypeB();
+    case MT_TYPE_C: return new CTypeC();
     }
+    return 0;
+}
+```
 
 This approach works perfectly well. There is absolutely nothing inherently wrong with it, except for the trivial overhead of the function call. There are a few other slight concerns that I would have about using it though.
 
@@ -65,7 +70,8 @@ My second concern is that I’m not instantiating and deleting the class at the 
 
 That’s not necessarily a problem, but when you’re dealing with a language which is not garbage collected, you need to be very careful to manage memory correctly. One way of doing that is having easily traceable new/delete pairs. Separating one or both parts of the pair into essentially unrelated sections of code is not really a good idea if you can possibly avoid it.
 
-(Side note: In more modern C++, you'd use a smart pointer to avoid this issue.)
+> In more modern C++, you'd use a smart pointer to avoid this issue.
+{: .prompt-tip }
 
 ## Factory design pattern
 
@@ -73,33 +79,35 @@ The factory design pattern is a very useful one in many situations. Many games m
 
 A factory class can take many forms, but the essence of it is a class which handles the memory management and data configuration of particular parts of the program. One of the things a factory may do is store a list of all the objects it has created, and it will delete them automatically when instructed. This allows you to keep the new/delete pairs together. The basics of the class might look like this:
 
-    class MyTypeFactory
+```cpp
+class MyTypeFactory
+{
+public:
+    ~MyTypeFactory() { deleteAll(); }
+    SomeBaseClass * createClass( MyType mt )
     {
-    public:
-     ~MyTypeFactory() { deleteAll(); }
-     SomeBaseClass * createClass( MyType mt )
-     {
-      SomeBaseClass * p = 0;
-      switch (mt)
-      {
-      case MT_TYPE_A: p = new CTypeA(); break;
-      case MT_TYPE_B: p = new CTypeB(); break;
-      case MT_TYPE_C: p = new CTypeC(); break;
-      }
-      if (p) m_Objects.push_back(p);
-      return p;
-     }
-     void deleteAll()
-     {
-      while (!m_Objects.empty())
-      {
-       delete m_Objects.front();
-       m_Objects.pop_front();
-      }
-     }  
-    private:
-      std::list<SomeBaseClass*> m_Objects;
-    };
+    SomeBaseClass * p = 0;
+    switch (mt)
+    {
+    case MT_TYPE_A: p = new CTypeA(); break;
+    case MT_TYPE_B: p = new CTypeB(); break;
+    case MT_TYPE_C: p = new CTypeC(); break;
+    }
+    if (p) m_Objects.push_back(p);
+    return p;
+    }
+    void deleteAll()
+    {
+    while (!m_Objects.empty())
+    {
+    delete m_Objects.front();
+    m_Objects.pop_front();
+    }
+    }  
+private:
+    std::list<SomeBaseClass*> m_Objects;
+};
+```
 
 That’s a very roughly thrown-together example. You would likely extend it by allowing the programmer to delete specific objects at will, rather than waiting to delete everything all at once. However, the principle is there, and it definitely has some strong uses. You would create an instance of the factory class, and then use it to create and delete all your other classes when necessary.
 
@@ -113,14 +121,18 @@ Sometimes, it’s nice just to be able to use the new/delete keywords yourself s
 
 However, it only works if you know which classes are being created at compile-time. All the overhead exists only at compile-time, so it lets your code be elegant and efficient, albeit slightly less readable. Here’s one approach I tried:
 
-    template < MyType T_mt > class MyTypeClass;
-    template < > class MyTypeClass<MT_TYPE_A> { public: typedef CTypeA type; };
-    template < > class MyTypeClass<MT_TYPE_B> { public: typedef CTypeB type; };
-    template < > class MyTypeClass<MT_TYPE_C> { public: typedef CTypeC type; };
+```cpp
+template < MyType T_mt > class MyTypeClass;
+template < > class MyTypeClass<MT_TYPE_A> { public: typedef CTypeA type; };
+template < > class MyTypeClass<MT_TYPE_B> { public: typedef CTypeB type; };
+template < > class MyTypeClass<MT_TYPE_C> { public: typedef CTypeC type; };
+```
 
 Here’s how you would use it in practice:
 
-    SomeBaseClass *p = new MyTypeClass< MT_TYPE_C >::type(); //... delete p;
+```cpp
+SomeBaseClass *p = new MyTypeClass< MT_TYPE_C >::type(); //... delete p;
+```
 
 If you’re not familiar with C++ templates then it may look like a bit of a mystery. Hopefully you can still see the elegance of the solution though. If I add any new classes then maintenance is fairly minor. I just need to add a new one of those lines which starts “template \< \>”.
 
@@ -145,5 +157,3 @@ This kind of template programming technique is quite similar to an area called �
 As much as the template solution is elegant and interesting, it doesn’t fully work for my purposes. It was a great little exercise, but my code will need to generate classes based on data that isn’t available until run-time (namely, the script which is running in the VM).
 
 The crucial thing to remember about template programming is that all parameters must resolve directly to data which is fixed at run-time. In other words, you cannot use variables or any data in memory as template parameters. The chances are therefore that I will actually use a simplified factory approach, although as my work on avidscript progresses, my whole approach to this particular area may change.
-
-<!--kg-card-end: markdown-->

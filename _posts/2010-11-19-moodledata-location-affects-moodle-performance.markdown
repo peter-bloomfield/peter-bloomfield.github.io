@@ -2,8 +2,6 @@
 layout: post
 title: moodledata location affects Moodle performance
 date: '2010-11-19 11:37:48'
-tags:
-- moodle
 ---
 
 I’ve been working with [Moodle](https://moodle.org) for several years now, primarily as part of the [SLOODLE](http://www.sloodle.org) project. However, one thing that has always been a source of frustration is how slow Moodle often seems on my local Windows Vista PC in the office. (Sadly, I don’t have the option of upgrading to Win7.)
@@ -24,12 +22,10 @@ I’ve never had the same problem on Win XP or 7, despite using the same webserv
 
 At the risk of being obvious, the solution is to follow the standard advice. That is, make sure your moodledata folder is not directly web-accessible. For example, if you keep your Moodle folder here:
 
-- c:\wamp\www\moodledata
+- `c:\wamp\www\moodledata`
 
 Then you should keep your moodledata folder here:
 
-- c:\wamp\moodledata
+- `c:\wamp\moodledata`
 
 The exact paths will vary from one webserver configuration to the next. Personally, I like to use [WampServer](http://www.wampserver.com/en) when I’m working on a Windows system. Regardless, the principle is this: if “www” is your webserver folder, then put moodledata in the folder above it. That should resolve the performance issue, seemingly because Moodle will no longer be able to test whether or not it is accessible from the web.
-
-<!--kg-card-end: markdown-->

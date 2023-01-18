@@ -16,8 +16,10 @@ Thankfully, streams come to our rescue! They provide a beautifully simple and st
 
 Everybody who uses C++ ought to know about streams. They are an essential part of the C++ experience. Sadly, very few people really know much about them, even though nearly everybody has used them. Consider the following code:
 
-    int num = 17;
-    std::cout << "Hello world! My number is " << num << std::endl;
+```cpp
+int num = 17;
+std::cout << "Hello world! My number is " << num << std::endl;
+```
 
 In a console app, it displays on the screen: `Hello world! My number is 17`. Pretty much everybody has done something like that at some stage when learning C++. But did you know that `cout` is in fact an output stream which just happens to write to the console? Stream data can be diverted anywhere you like.
 
@@ -25,10 +27,12 @@ In a console app, it displays on the screen: `Hello world! My number is 17`. Pre
 
 I’ve seen people struggle terribly with C-style `fopen(..)`, `fread(..)`, and `fwrite(..)` functions when doing file I/O. There's no need because you can use file streams just like you used the console stream. Here’s our console example adapted for file output:
 
-    int num = 17;
-    std::fstream file("test.txt", std::fstream::out);
-    file << "Hello world! My number is " << num << std::endl;
-    file.close();
+```cpp
+int num = 17;
+std::fstream file("test.txt", std::fstream::out);
+file << "Hello world! My number is " << num << std::endl;
+file.close();
+```
 
 That should give you a file named “test.txt” with the same text in it as we had on our console earlier.
 
@@ -36,17 +40,21 @@ That should give you a file named “test.txt” with the same text in it as we 
 
 Now for the really fun part. You can make a stream just store up the data you give it, then get the whole lot out as a `std::string`. No need for allocating char buffers and using C-style `sprintf()` anymore. Here’s how:
 
-    int num = 17;
-    std::stringstream stream;
-    stream << "Hello world! My number is " << num << std::endl;
-    std::string s = stream.str();
+```cpp
+int num = 17;
+std::stringstream stream;
+stream << "Hello world! My number is " << num << std::endl;
+std::string s = stream.str();
+```
 
 It’s really that easy. You just need to remember to call `.str()` on your stream object to get a conventional `std::string` object out. You can use string streams to write data of many kinds into a string. You can also parse data out of a string too, like this:
 
-    float f = 0.0f;
-    int i = 0;
-    std::stringstream("123.4") >> f;
-    std::stringstream("321") >> i;
+```cpp
+float f = 0.0f;
+int i = 0;
+std::stringstream("123.4") >> f;
+std::stringstream("321") >> i;
+```
 
 At the end of that, your float will contain `123.4` and your int will contain `321`. That kind of data extraction/conversion works for any stream, including the console and files.
 
@@ -54,7 +62,9 @@ At the end of that, your float will contain `123.4` and your int will contain `3
 
 The fun of C++ streams doesn’t end there. There are wonderful things called manipulators which can modify your input/output. `std::endl` is an example of a manipulator which ends a line and flushes the buffer. Here’s another very handy one for programmers:
 
-    std::cout << std::hex << 29;
+```cpp
+std::cout << std::hex << 29;
+```
 
 That will output `1d` to the console. The `hex` manipulator will modify the stream so that every number you subsequently send down it will be expressed in hexadecimal. You can also use `oct` for octal, or `dec` to switch it back to decimal. There are also manipulators to express numbers in fixed-point or scientific notation, as well as many more.
 
@@ -68,4 +78,3 @@ I find [cppreference.com](https://en.cppreference.com) to be an invaluable resou
 - [`fstream`](https://en.cppreference.com/w/cpp/header/fstream) – for file input/output
 - [`sstream`](https://en.cppreference.com/w/cpp/header/sstream) – for string reading/writing
 - [`manipulators`](https://en.cppreference.com/w/cpp/io/manip)
-<!--kg-card-end: markdown-->

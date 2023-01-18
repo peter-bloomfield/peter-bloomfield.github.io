@@ -4,6 +4,7 @@ title: 'ADOdb function: GetUpdateSQL'
 date: '2010-01-21 02:14:58'
 tags:
 - php
+- databases
 ---
 
 I have been getting myself familiar with [ADOdb](http://adodb.org) by using it in a personal web-development project. During my experiments, I ran across a member function called `GetUpdateSQL()`. In principle, it looks like a very useful function. Given a recordset which you’ve previously retrieved in a query, and given some desired changes, it will generate an UPDATE query string for you. However, I have found it to be a little disappointing for my needs.
@@ -12,10 +13,12 @@ I have been getting myself familiar with [ADOdb](http://adodb.org) by using it i
 
 A slightly counter-intuitive aspect of the function is the way you give it changes. It takes two parameters. The first is the recordset you want to make changes to, but crucially this has to be the _original_ recordset without any modifications. You specify your modifications using an associative array (associating the name of the column with the desired new value). The query and update might look like this:
 
-    $recordset = $db->Execute("SELECT * FROM users WHERE id = 5");
-    $mychanges = array('name' => 'Fred Flinstone');
-    $sql = $db->GetUpdateSQL($recordset, $mychanges);
-    $db->Execute($sql);
+```php
+$recordset = $db->Execute("SELECT * FROM users WHERE id = 5");
+$mychanges = array('name' => 'Fred Flinstone');
+$sql = $db->GetUpdateSQL($recordset, $mychanges);
+$db->Execute($sql);
+```
 
 Passing the changes in as a separate array is a slight annoyance, although I can see why it is done. The original recordset is used to determine whether any data changes are actually being requested, and so no unnecessary changes are sent to the database. Efficiency is good.
 
@@ -36,5 +39,3 @@ There are a couple of possibilities. I have already mentioned my ideal solution,
 Perhaps a slightly better alternative would be the ability to specify multiple arrays of changes. You wouldn’t just supply an associative array of “column =\> value” changes to be applied to all records. Rather, you would supply an array of those associative arrays; i.e. one for each record. Being able to group all the updates together into a batch like this would provide some optimisation possibilities.
 
 Anyway, those are just my ideas. I appreciate that ADOdb is primarily concerned with portability of database code, and it does that very well. However, it would be nice to see some more time-saving features like these.
-
-<!--kg-card-end: markdown-->

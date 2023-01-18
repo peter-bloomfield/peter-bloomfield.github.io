@@ -50,7 +50,7 @@ Here’s where the maths comes in. You can perhaps get a clue as to how it works
 
 For a discrete data set _X_, the Standard Deviation _s_ is given by the equation:
 
-![Equation for standard deviation]( __GHOST_URL__ /content/images/2019/09/sd-equation.png)
+![Equation for standard deviation](/assets/img/migrated/sd-equation.png)
 
 The _X_ with a bar over it is the mean of the data set. It’s worth noting that this is the basic ‘biased’ version of the standard deviation equation. The ‘unbiased’ version divides by “N – 1”.
 
@@ -63,5 +63,3 @@ There are alternatives, although standard deviation is very common. It’s actua
 For example, Excel provides functions called “STDEV()” and “STDEVP()” (unbiased and biased equations respectively) for which you can supply a range of cells containing the values, such as A1:A100.
 
 For more information, check out the [Wikipedia article on standard deviation](http://en.wikipedia.org/wiki/Standard_deviation), or look up any decent statistics textbook.
-
-<!--kg-card-end: markdown-->

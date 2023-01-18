@@ -4,7 +4,6 @@ title: avidscript lives!
 date: '2011-01-21 21:17:41'
 tags:
 - compilers
-- personal-projects
 ---
 
 As I’ve mentioned on some recent posts, I’ve been working on developing my own compiler and virtual machine lately. And finally, it lives! It’s taken 5 months, with some language revisions along the way, but I have set out what I intended to achieve: a custom programming language, compiled down to bytecode, running in a virtual machine.
@@ -21,8 +20,10 @@ This helps keep the grammar simple, although still not quite [LL1](https://en.wi
 
 For example:
 
-    var t.int v.myNum = 15;
-    var t.float v.halfMyNum = t.float(v.myNum) / 2.0;
+```
+var t.int v.myNum = 15;
+var t.float v.halfMyNum = t.float(v.myNum) / 2.0;
+```
 
 That may look ugly (and it is) but it’s only in implementing and using this that you realise how much leeway languages like C/C++ give you. They are normally criticised for being too rigid for beginners to learn, with strongly-typed variables and so on.
 
@@ -32,19 +33,22 @@ In reality, things like type promotions and implicit casts and copy constructors
 
 Here is a very simple example program which asks the user how many square numbers (n) they want to calculate. It will then output the first `n` square numbers:
 
-    function t.null f.main()
+```
+function t.null f.main()
+{
+    f.consoleWrite("How many square numbers do you want to calculate? ");
+    var t.int v.total = t.int(f.consoleReadLine());
+    for (var t.int v.counter = 1; v.counter <= v.total; v.counter++)
     {
-        f.consoleWrite("How many square numbers do you want to calculate? ");
-        var t.int v.total = t.int(f.consoleReadLine());
-        for (var t.int v.counter = 1; v.counter <= v.total; v.counter++)
-        {
-            f.consoleWriteLine(t.string(v.counter) + " squared = " + t.string(f.squareInt(v.counter)));
-        }
+        f.consoleWriteLine(t.string(v.counter) + " squared = " + t.string(f.squareInt(v.counter)));
     }
-    function t.int f.squareInt(var t.int v.num)
-    {
-        return v.num * v.num;
-    }
+}
+
+function t.int f.squareInt(var t.int v.num)
+{
+    return v.num * v.num;
+}
+```
 
 ## Compiler structure
 
@@ -86,5 +90,3 @@ Currently, there are still a lot of rough edges on the compiler and VM. For now 
 In the medium term, I would like to look at integrating the VM into a larger program, allowing data to pass between the parent program and the script. I think that will need some careful thought regarding efficiency of data transfer. I would also like to explore implementing arrays. I suspect my whole variable handling system will need an overhaul before I can do it justice, but I think it's an important stepping stone towards custom data types.
 
 In the longer term, I want to support simple C-style structures, and possibly some very basic object-orientation (akin to the capabilities of PHP4, perhaps). And ultimately of course, I want to re-visit my plans for a concurrent state-based scripting system.
-
-<!--kg-card-end: markdown-->

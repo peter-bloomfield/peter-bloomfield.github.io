@@ -4,7 +4,6 @@ title: 'PHP gotcha: Content-Type matters!'
 date: '2010-04-17 19:09:32'
 tags:
 - php
-- web-dev
 ---
 
 I encountered a frustrating problem regarding HTTP content type headers today. It massively broke the design of my site in Firefox, but didn’t seem to affect anything in Internet Explorer. The lesson learned is to be careful where you set the Content-Type header in PHP.
@@ -15,7 +14,9 @@ I’ve been working on a new website which divides the CSS into two separate fil
 
 It’s worth noting that the aesthetic stylesheet was actually a PHP script. This was because I wanted to be able to swap-out colour schemes dynamically during development for testing different ideas. I had been careful to tell PHP to push a suitable Content-Type header at the top of the file, before anything else was sent:
 
-    header("Content-Type: text/css; charset=utf-8");
+```php
+header("Content-Type: text/css; charset=utf-8");
+```
 
 Strangely, the CSS data nonetheless seemed to be detected as “text/html” by the browser.
 
@@ -28,5 +29,3 @@ Firefox saw the second Content-Type header as being the correct one, and therefo
 ## The solution
 
 Set the Content-Type header correctly, and only set it once.
-
-<!--kg-card-end: markdown-->
