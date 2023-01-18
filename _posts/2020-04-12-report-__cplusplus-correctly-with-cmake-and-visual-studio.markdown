@@ -14,7 +14,7 @@ Microsoft introduced the [`/Zc:__cplusplus` compiler option](https://docs.micros
 
 This post will explain how to enable this option if you're managing your build using CMake.
 
-# Single target
+## Single target
 
 To fix the `__cplusplus` macro for a single library or executable, add this to your CMake file:
 
@@ -34,7 +34,7 @@ target_compile_features(mytarget PUBLIC cxx_std_14)
 
 Again, replace `mytarget` with the name of your CMake target. You may already have specified the C++ standard somewhere else, in which case you don't need to do it again.
 
-# Multiple targets
+## Multiple targets
 
 If you want to fix the macro for multiple targets at the same time then you can do this instead:
 
@@ -53,7 +53,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ```
 
-# Example project
+## Example project
 
 To see the macro in action, create a folder for a simple test project. Within it, create two files: `main.cpp` and `CMakeLists.txt`.
 
@@ -102,7 +102,7 @@ __cplusplus=201402
 
 In `CMakeLists.txt`, try changing `cxx_std_14` to `cxx_std_17`, and the output should change accordingly when you build and run the project. You could also try commenting-out the `target_compile_options` line to see the default macro value.
 
-# Conan package
+## Conan package
 
 If you're creating a library to be packaged by [Conan](https://conan.io/) then you may also want to specify the compiler option in your package info. This will ensure that any Conan project depending on your library automatically sets the `__cplusplus` macro correctly as well when building with MSVC.
 

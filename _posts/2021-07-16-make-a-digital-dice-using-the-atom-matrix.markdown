@@ -15,13 +15,13 @@ The ATOM Matrix includes a built-in 5x5 pixel RGB display, and the whole body ac
 ![ATOM Matrix](/assets/img/migrated/m5-atom-d6-example.jpg){: width="111" height="300" }
 *ATOM Matrix dice showing the number 3. The attachment on the bottom is the "TailBat" battery.*
 
-# Requirements
+## Requirements
 
 If you haven't done so already, you'll need to install the Arduino IDE, and configure it for uploading sketches to the ATOM Matrix. You'll also need to install the official M5Atom library. See my previous blog post for details on how to do this:
 
 * [How to program ATOM Matrix and Lite with the Arduino IDE on Windows]({% post_url 2021-03-21-how-to-program-atom-matrix-and-lite-with-the-arduino-ide-on-windows %})
 
-# Source code
+## Source code
 
 The full source code for this project is available on GitHub:
 
@@ -29,9 +29,9 @@ The full source code for this project is available on GitHub:
 
 Feel free to dive straight in if you're comfortable reading C++/Arduino code. Alternatively, keep reading this post if you'd prefer a step-by-step explanation of how it works.
 
-# Tutorial
+## Tutorial
 
-## Setup
+### Setup
 
 Every Arduino sketch needs to have a function called `setup()`. It gets called once when the device is powered-on or reset, and is typically use to initialise a few things. Ours looks like this:
 
@@ -53,7 +53,7 @@ We're setting the first two arguments to `false` because we're not using serial 
 
 The second thing we're doing in the setup function is clearing the matrix display (i.e. setting it to black). That's done by calling &nbsp;`M5.dis.clear()`. This ensures nothing is left over on the display from the last time the sketch ran.
 
-## Loop
+### Loop
 
 Every Arduino sketch also needs a `loop()` function. After `setup()` has finished, `loop()` gets called repeatedly until the device is powered-off or reset. Our loop function looks like this:
 
@@ -80,7 +80,7 @@ void loop()
 
 There are a few things going on here, so we'll break them down below.
 
-### Handle button press
+#### Handle button press
 
 When the user presses the button down, we want to immediately clear the display. This gives a useful visual clue that the button press has been detected. (We'll display a new number later when they release the button.)
 
@@ -88,7 +88,7 @@ If you want, you can detect button presses on the Atom Matrix by directly queryi
 
 Luckily, the M5Atom library has a handy function which will do that all for us: `M5.Btn.wasPressed()`. It will return `true` if the button has been pressed down since the last time round the loop. If that happens, we clear the display by calling `M5.dis.clear()` again.
 
-### Handle button release
+#### Handle button release
 
 When the user releases the button, we want to generate and display a new random number. To do that, we use another handy function in the M5 library: `M5.Btn.wasReleased()`. As the name suggests, it returns true if the button has been released since the last loop.
 
@@ -114,7 +114,7 @@ drawNumber(getRandomDiceRoll(), g_foregroundColour);
 
 `drawNumber()` and `getRandomDiceRoll()` are custom functions in our sketch. I'll explain those later on.
 
-### Update the M5Atom library
+#### Update the M5Atom library
 
 The last thing we do in the `loop()` function is to call `M5.update()`. It's important to do this once on every loop. It will check for any changes in the button state, allowing functions like `M5.Btn.wasPressed()` and `M5.Btn.wasReleased()` to report presses correctly.
 
@@ -122,7 +122,7 @@ The `delay()` before we call `update()` isn't strictly necessary. It just tells 
 
 Microcontrollers like the ESP32 (which the ATOM Matrix is built on) can go into low-power mode during a delay. This is mainly helpful if you're running on battery power. In practice though, the amount of energy saved is probably trivial compared to the amount needed to keep the matrix display illuminated.
 
-## Generate a random number
+### Generate a random number
 
 The first of our custom functions is called `getRandomDiceRoll()`. It just gets a random integer between 1 and 6 (inclusive). It's implemented like this:
 
@@ -145,7 +145,7 @@ Our modulus is 6, which means it effectively divides the analog reading by 6, th
 
 At this stage, it's important to note that the voltage fluctuations on a floating pin are fairly small, and strictly speaking they aren't truly random. However, they are big enough and random enough for a simple dice roll. You wouldn't want to use this technique to generate much larger random numbers, or for important applications such as cryptography.
 
-## Draw a number
+### Draw a number
 
 Our second custom function is a very important one: it's called `drawNumber()` and it displays our random number on the matrix. It's implemented like this:
 
@@ -211,7 +211,7 @@ For example, here's the block for the number 4:
 
 That sets pixels 6, 8, 16, and 18 to the foreground colour, which makes it look like the typical arrangement of 4 dots on traditional 6-sided dice. All the other pixels continue showing the background colour.
 
-## Customising the colours
+### Customising the colours
 
 It's easy to change the foreground and background colours if you like. Look for variables called `g_foregroundColour` and `g_backgroundColour` declared near the top of the code:
 
@@ -234,7 +234,7 @@ The default colours are white dots on a dark red background. When I think of tra
 - Yellow: `0xffff00` (bright), `0x333300` (dark)
 - Cyan: `0xff00ff` (bright), `0x330033` (dark)
 
-# How to load the sketch
+## How to load the sketch
 
 1. Download the complete program from [here](https://github.com/peter-bloomfield/atom-matrix-dice-d6/blob/main/atom-matrix-dice-d6.ino).
 2. Open the file in the Arduino IDE.
@@ -246,7 +246,7 @@ When it's finished, the matrix display will be initially blank. Press and releas
 
 You can clear the display by pressing the reset button on the side of the ATOM Matrix.
 
-# Next steps
+## Next steps
 
 There are 25 pixels to play with on the ATOM Matrix, so you aren't limited to a 6-sided dice. You could add more arrangements of dots, or you could make it draw numerical digits instead. You could even draw some letters, such as H (heads) and T (tails) for a digital coin toss.
 

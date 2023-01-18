@@ -11,7 +11,7 @@ The C++11 standard introduced the `auto` keyword for type deduction. One of its 
 > Side note: Technically, C++11 [repurposed the auto keyword from C](https://www.geeksforgeeks.org/storage-classes-in-c/), but we won't cover that here.
 {: .prompt-info }
 
-# A quick look
+## A quick look
 
 When you create and initialise a variable or object, you normally specify its type and name, and possibly some initialisation value or parameters. The `auto` keyword replaces some or all of the type declaration. For example, let’s say we’re copying a hypothetical `Widget` object like this:
 
@@ -29,11 +29,11 @@ This tells the compiler that `foo` is going to be the same basic type as `blah`.
 
 That’s the basic gist of `auto` in variable declarations. It’s as simple as that. You can use it for all kinds of local/global initialisations, whether you’re copying an object or a fundamental type directly, storing a literal, or storing the return value of a function.
 
-# More realistic examples
+## More realistic examples
 
 The quick look above was deliberately very simple. Let’s look at some more realistic uses of the `auto` keyword.
 
-## Iterators
+### Iterators
 
 Let’s say you have a list of `Widget` objects and you want to iterate over them. Here’s what the conventional code to get the first iterator might look like:
 
@@ -51,7 +51,7 @@ The compiler can safely look at the declaration of the `begin()` method and dete
 
 Also, if you were to change the container type (e.g. to use a vector instead of a list) then the `auto` declaration would still work without any modification. That can make some maintenance and refactoring tasks easier and more robust.
 
-## Smart pointers
+### Smart pointers
 
 One of the other great parts of C++11 is the robust smart pointers. Unfortunately, the declarations take up quite a few extra characters. Let’s say you’re making an instance of a `Widget` object and storing it using a shared pointer. Here’s the non-auto version:
 
@@ -71,7 +71,7 @@ In case you’re not familiar with it, `make_shared<>()` is the safe way to inst
 auto p = std::shared_ptr<Widget>(new Widget); // not safe!
 ```
 
-## Lambdas
+### Lambdas
 
 My favourite part of C++11 is lambdas. These are locally-defined function objects which you can store and pass around. Normally, storing them requires the use of `std::function` which can be slightly unwieldy. This example stores a simple lamdba which just multiplies a number by 2:
 
@@ -87,7 +87,7 @@ auto func = [](int n) { return n * 2; };
 
 In case you’re wondering about the lambda’s return type, the compiler infers it automatically if the body of the lambda contains nothing but a return statement.
 
-## const
+### const
 
 If you want your `auto` declaration to be `const`, then you’ll normally have to specify that explicitly. Let’s say you’ve got a map of `Widget` objects and you’re trying to find one by its ID number. You might want to make the returned iterator `const` if it’s not going to be moved later, e.g.:
 
@@ -103,7 +103,7 @@ const auto iter = widgetMap.find(123);
 
 This is a good example of how the `auto` keyword can make your code simpler. With `auto`, you don’t need to worry about the exact template arguments for the iterator declaration because the compiler can infer them directly from the `find()` method.
 
-## References
+### References
 
 You’ll have to add the ampersand (`&`) explicitly if you want your `auto` declaration to be a reference. For example, let’s say you have a vector of `Widget` objects and you want to get a reference to a specific element. Here’s what the conventional code might look like:
 
@@ -126,9 +126,9 @@ const int num = 10;
 auto & ref = num; // ref is a const int &
 ```
 
-# Where not to use auto
+## Where not to use auto
 
-## Members and parameters
+### Members and parameters
 
 In C++11, the `auto` keyword only works for local and global variables. That means you cannot use `auto` to declare a class member or a function parameter. This is because the declaration of a structure or function must be explicit and unambiguous.
 
@@ -137,7 +137,7 @@ If you want something similar to `auto` behaviour for member variables and funct
 > C++14 adds the ability to declare `auto` parameters in lambdas.
 {: .prompt-info }
 
-## Implicit up-casts
+### Implicit up-casts
 
 Despite being generally considered a strongly-typed language, C++ is a little lax about some conversions. For example, you can implicitly up-cast a pointer from a derived class to a publicly-inherited base class:
 
@@ -153,7 +153,7 @@ auto ptr = new ChildClass;
 
 `ptr` is now a pointer to a `ChildClass` object. Depending on your class design, this may or may not be a problem. In many cases, it will be completely harmless. However, it’s important to be aware of implicit conversions that you may be relying on before using auto. An explicit declaration would probably be most appropriate for cases like this, but you could also cast the right-hand side of the assignment.
 
-## Implicit literal conversions
+### Implicit literal conversions
 
 This is a similar issue to implicit up-casts, and it particularly affects integer types due to type promotion. The following example stores an integer literal as an unsigned short (typically a 2 byte type):
 
@@ -169,17 +169,17 @@ auto num = 123;
 
 The `auto` declaration will resolve to signed int (typically a 4 byte type) because that’s how the compiler will usually interpret an integer literal. Once again, an explicit declaration is typically the best way to go here to avoid the ambiguity.
 
-# Common concerns
+## Common concerns
 
-## Strong vs. weak types
+### Strong vs. weak types
 
 Some people might look at `auto` variables and think C++ is turning into a weakly-typed language. That’s absolutely not the case because the type behaviour is completely unmodified. A variable declared as `auto` simply has its type deduced (primarily) by the right-hand side of the initialisation statement instead of the left-hand side. That’s all there is to it. It’s still as strongly-typed and as type-safe as ever.
 
-## Performance
+### Performance
 
 Another common concern is that auto variables will somehow affect the performance of the program. As with strong vs. weak types this is a non-issue because the type behaviour is completely unmodified. The only difference with auto is where the compiler looks to determine the declaration type. The run-time behaviour and performance should be completely unaffected (unless you’re careless about how you introduce `auto` into your code).
 
-# Conclusion
+## Conclusion
 
 The `auto` keyword is a very handy little addition to the arsenal of day-to-day programming tools. I’ve only covered one aspect of its use here, but it’s the aspect which most programmers will probably see and use most often.
 

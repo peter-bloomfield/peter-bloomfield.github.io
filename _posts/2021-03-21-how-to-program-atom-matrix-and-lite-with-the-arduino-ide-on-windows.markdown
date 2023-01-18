@@ -9,7 +9,7 @@ tags:
 
 The [ATOM Matrix](https://docs.m5stack.com/#/en/core/atom_matrix) and [ATOM Lite](https://docs.m5stack.com/#/en/core/atom_lite) are fun little [ESP32](https://en.wikipedia.org/wiki/ESP32)-based development kits from [M5Stack](https://m5stack.com/). They can be programmed from the Arduino IDE, although the official instructions for doing that weren't very good when I was getting started. In this post, I'll document the steps which worked for me on Windows 10.
 
-# 1. Drivers
+## 1. Drivers
 
 At the time of writing, the [documentation from M5Stack](https://docs.m5stack.com/#/en/arduino/arduino_development) seems to say that you don't need to manually install any drivers before using the ATOM Matrix / Lite. However, that wasn't the case for me on Windows 10. I had to install the FTDI drivers from here:
 
@@ -26,17 +26,17 @@ If you haven't installed the driver then you might see something like this under
 
 ![Screenshot of Windows Device Manager without FTDI driver](/assets/img/migrated/device-manager-without-ftdi-driver.png){: width="169" height="116" }
 
-### What does the FTDI driver do?
+#### What does the FTDI driver do?
 
 Like many microcontrollers, the [ESP32](https://en.wikipedia.org/wiki/ESP32) at the heart of the ATOM acts as a [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter), communicating via a basic serial protocol called [RS232](https://en.wikipedia.org/wiki/RS-232). That protocol has been around for a very long time, and its simplicity makes it useful for embedded systems. However, most computers don't have a compatible port any more because the protocol is too limited for modern consumer devices.
 
 The ATOM solves this problem in the same way as several similar devices: it contains an [FTDI](https://en.wikipedia.org/wiki/FTDI) chip. That chip acts as a bridge between the USB connection and the ESP32 UART. Installing the driver allows other software (such as the Arduino IDE) to communicate with the UART as though it were connected directly; it effectively makes the USB part of the connection transparent.
 
-# 2. Setup the Arduino IDE
+## 2. Setup the Arduino IDE
 
 These instructions are based on Arduino IDE v1.8.13. The same general steps work in version 2 of the Arduino IDE, but some of the dialogs look a little different.
 
-## 2.1. Install the desktop IDE
+### 2.1. Install the desktop IDE
 
 You will need to download and install the Arduino IDE, if you haven't already. See the documentation here for instructions and links:
 
@@ -45,7 +45,7 @@ You will need to download and install the Arduino IDE, if you haven't already. S
 > It isn't currently possible to use the ATOM development kits (or any other ESP32 boards) from the Arduino Web Editor, also known as the online IDE. You'll need to download and run the desktop IDE.
 {: .prompt-info }
 
-## 2.2. Boards Manager
+### 2.2. Boards Manager
 
 Before you can upload any sketches, the IDE needs to know how to work with an ESP32 microcontroller.
 
@@ -74,7 +74,7 @@ Next, you need to install the ESP32 board definitions. Open the Boards Manager (
 
 In the text box at the top-right, type "esp32" and press enter. When the "esp32" result appears, click the "Install" button. It may take a while to download and install.
 
-## 2.3. Libraries (optional)
+### 2.3. Libraries (optional)
 
 I recommend installing the "FastLED" library if you have the ATOM Matrix or you want to work with external RGB LEDs. It's widely used, and my experience with it has been very positive so far.
 
@@ -96,7 +96,7 @@ In case you're interested, you can see the source code for the libraries here:
 - [FastLED library](https://github.com/FastLED/FastLED)
 - [M5Atom library](https://github.com/m5stack/M5Atom)
 
-## 2.4. Upload settings
+### 2.4. Upload settings
 
 Before you can upload any sketches, you need to configure the IDE to talk to the ATOM correctly. First, ensure your ATOM is plugged-in to your computer via USB.
 
@@ -118,7 +118,7 @@ Finally, as with any Arduino board, you need to select the appropriate port. Cli
 ![Screenshot of the selecting a port in Arduino IDE v1](/assets/img/migrated/arduino-v1-port-selection.png){: width="442" height="398" }
 *Selecting the port in Arduino IDE v1*
 
-# 3. Upload a sketch
+## 3. Upload a sketch
 
 You're now ready to upload a sketch to your ATOM. Here's a very simple one which will work on both the ATOM Matrix and ATOM Lite, without any libraries. It simply writes "Hello World!" to the serial output every second:
 
@@ -146,7 +146,7 @@ You should start to see "Hello World!" repeatedly, like this:
 ![Scerenshot of the Arduino IDE v1 Serial Monitor](/assets/img/migrated/arduino-v1-serial-monitor.png){: width="612" height="351" }
 *Arduino IDE v1 Serial Monitor*
 
-# Next steps
+## Next steps
 
 Hopefully you're now ready to start programming your ATOM board.
 
