@@ -49,8 +49,6 @@ I went through an example in the documentation of using DirectShow to play a vid
 
 The results came together remarkably easily. I created a console application which sets up DirectShow, and then plays a video from a file in a small window. You can see a screenshot of it below. [Click here view the source code](https://gist.github.com/peter-bloomfield/70501ddff33abcc379910a0cdc3db26a). It was developed in MS Visual Studio 2003.
 
-![video_player]( __GHOST_URL__ /content/images/2019/09/video_player.jpg)
+![Video player screenshot](/assets/img/migrated/video_player.jpg)
 
 Two things you need to note: in order to compile it, you will need the link in with a couple of DirectShow libraries, “Strmiids.lib” and “Quartz.lib”. Also, remember to put in the path/filename of a video file (preferably AVI or WMV) on line 66.
-
-<!--kg-card-end: markdown-->

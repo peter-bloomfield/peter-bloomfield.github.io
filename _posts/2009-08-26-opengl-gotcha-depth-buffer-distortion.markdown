@@ -10,7 +10,7 @@ redirect_from:
 
 While I’m on the topic of OpenGL gotchas, I thought I’d mention another which caught me out a couple of years ago. I was working on some prototypes with some friends, and we encountered some strange visual glitches:
 
-![Screenshot of visual glitches]( __GHOST_URL__ /content/images/2019/09/depth_buffer_distortion.jpg)
+![Screenshot of visual glitches](/assets/img/migrated/depth_buffer_distortion.jpg)
 
 Notice areas where polygons overlap: you can see a striped or checked pattern of the occluded polygon showing through. In this case, we were rendering 2d graphics with a perspective (3d) view so that we could make some interesting visual effects. However, the problem can manifest just as badly in full 3d.
 
@@ -33,10 +33,8 @@ At this point, viewport dimensions are mapped onto the X and Y axes. The scale o
 
 You might expect the depth buffer to be uniformly mapped along the Z axis of this viewing box. However, the mapping is usually denser towards the near clipping plane and sparser towards the far clipping plane. This is to allow for more accurate rendering for objects which are closer to the camera and which are therefore more noticeable.
 
-As a result, if your near clipping is at or near 0 depth then your depth buffer mapping is almost entirely clustered at that point. In other words, you end with very few bits left for the rest of your viewing frustum. The consequence is such low precision depth representation that it looks like your depth buffer is being distorted or corrupted.
+As a result, if your near clipping is at or near 0 depth then your depth buffer mapping is almost entirely clustered at that point. In other words, you end up with very few bits left for the rest of your viewing frustum. The consequence is such low precision depth representation that it looks like your depth buffer is being distorted or corrupted.
 
 ## The solution
 
 As a general rule, don’t put your near clipping plane at depth 0. Depth 1 is usually a good starting point, but it depends somewhat on your application.
-
-<!--kg-card-end: markdown-->

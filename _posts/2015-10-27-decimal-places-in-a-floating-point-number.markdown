@@ -62,7 +62,7 @@ Both of them are written with 20 decimal places. However, the second one would o
 
 This program shows an example of this in action:
 
-```c++
+```cpp
 #include <iostream>
 #include <iomanip>
 using namespace std;

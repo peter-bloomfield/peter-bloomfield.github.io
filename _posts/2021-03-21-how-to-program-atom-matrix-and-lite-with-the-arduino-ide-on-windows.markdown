@@ -124,7 +124,7 @@ Finally, as with any Arduino board, you need to select the appropriate port. Cli
 
 You're now ready to upload a sketch to your ATOM. Here's a very simple one which will work on both the ATOM Matrix and ATOM Lite, without any libraries. It simply writes "Hello World!" to the serial output every second:
 
-```c++
+```cpp
 void setup()
 {
   Serial.begin(115200);

@@ -18,8 +18,10 @@ I didn’t care about mipmaps at this early stage so I loaded the texture at lev
 
 Everything seemed fine in the code, and yet the textures were not being rendered. All I could see were coloured polygons. The only way I could get the textures to render was if I switched my `glTexImage2D()` function call for `gluBuild2DMipmaps()`. I double-checked that my texture filters were correctly setup, and sure enough I had the following code in my OpenGL initialisation function:
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+```cpp
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+```
 
 ## The problem
 
@@ -28,5 +30,3 @@ It took a long time, but after some digging, I eventually realised my mistake. I
 ## The solution
 
 It’s easy really. Instead of specifying the texture parameters in my OpenGL initialisation function, I specified them in the texture loading function, immediately after my call to `glTexImage2D()`. Everything worked fine after that.
-
-<!--kg-card-end: markdown-->

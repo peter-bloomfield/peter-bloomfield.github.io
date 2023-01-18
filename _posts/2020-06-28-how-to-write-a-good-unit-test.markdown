@@ -95,7 +95,7 @@ Another programmer reading your code should be able to see clearly what each uni
 
 For example, let's say I have a class called `Widget` which has a member function called `setName()`. I want to test that it throws an exception if the name passed to it is empty. If I was writing a test for this in C++ with [GoogleTest](https://github.com/google/googletest) then it might look like this:
 
-```c++
+```cpp
 TEST(Widget, setNameThrowsInvalidArgumentIfSpecifiedNameIsEmpty)
 {
     // ...

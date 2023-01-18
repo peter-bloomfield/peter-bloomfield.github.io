@@ -61,7 +61,7 @@ To see the macro in action, create a folder for a simple test project. Within it
 
 Put this in `main.cpp`:
 
-```c++
+```cpp
 #include <iostream>
 int main()
 {

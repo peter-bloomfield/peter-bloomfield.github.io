@@ -29,18 +29,24 @@ After that, you need to link to the Gdiplus library. Still in Project Properties
 
 Now you need to add the code to initialise and cleanup the GDI+ system. Put the following code somewhere near the start of your WinMain function (before you create any windows):
 
-    GdiplusStartupInput gdiplusStartupInput;
-    ULONG_PTR gdiplusToken;
-    GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+```cpp
+GdiplusStartupInput gdiplusStartupInput;
+ULONG_PTR gdiplusToken;
+GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+```
 
 Next, put the following code somewhere near the end of your WinMain function, after all other GDI+ objects have been deleted or fallen out of scope:
 
-    GdiplusShutdown(gdiplusToken);
+```cpp
+GdiplusShutdown(gdiplusToken);
+```
 
 Finally, somewhere near the top of your source code file(s) where you will be using GDI+, you’ll want to put this:
 
-    #include <gdiplus.h>
-    using namespace Gdiplus;
+```cpp
+#include <gdiplus.h>
+using namespace Gdiplus;
+```
 
 ## How to use it
 
@@ -48,24 +54,28 @@ You’ll usually want to use GDI+ in your window’s “paint” event (although
 
 You have to start by getting a `Graphics` object linked to the device context of your window so it can draw to it safely. There’s lots of ways to handle a paint event, but I’ll follow my preferred approach here (remember to make sure you’re window area is invalidated before doing this):
 
-    // Assuming you've got your window handle in "hWnd":
-    PAINTSTRUCT ps;
-    HDC hdc = BeginPaint(hWnd, &ps);
-    Graphics g(hdc);
+```cpp
+// Assuming you've got your window handle in "hWnd":
+PAINTSTRUCT ps;
+HDC hdc = BeginPaint(hWnd, &ps);
+Graphics g(hdc);
+```
 
 Just like with the regular GDI, you draw and paint using pens and brushes, but thankfully these are much easier. We will fill in a rectangle with a red brush, and draw a green circle inside it:
 
-    SolidBrush redBrush(Color::Red);
-    Pen greenPen(Color::Green, 2.0);
-    g.FillRectangle(&redBrush, 20, 20, 100, 100);
-    g.DrawEllipse(&greenPen, 30, 30, 80, 80);
+```cpp
+SolidBrush redBrush(Color::Red);
+Pen greenPen(Color::Green, 2.0);
+g.FillRectangle(&redBrush, 20, 20, 100, 100);
+g.DrawEllipse(&greenPen, 30, 30, 80, 80);
+```
 
 Finally, we need to tell our window to finish painting now (this bit isn’t GDI+):
 
-    EndPaint(hWnd, &ps);
+```cpp
+EndPaint(hWnd, &ps);
+```
 
 ## Documentation
 
-As you can see, it’s fairly easy to setup and use GDI+. I recommend looking at the [GDI+ documentation on MSDN](https://docs.microsoft.com/en-gb/windows/desktop/gdiplus/-gdiplus-using-gdi--use) to help you get going.
-
-<!--kg-card-end: markdown-->
+As you can see, it’s fairly easy to setup and use GDI+. I recommend looking at [Microsoft's GDI+ documentation](https://learn.microsoft.com/en-gb/windows/win32/gdiplus) to help you get going.

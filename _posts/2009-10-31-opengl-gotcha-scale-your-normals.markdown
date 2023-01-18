@@ -26,10 +26,10 @@ The ideal solution to this is always to specify the normal immediately before th
 
 The easier solution to this problem is to tell OpenGL to normalize all normals automatically. You can do this selectively by enabling/disabling it at certain points, or you can enable once at the start of your program and forget about it. It’s unfortunately not very efficient, so the latter option isn’t preferable.
 
-    glEnable(GL_NORMALIZE);
-    // drawing code...
-    glDisable(GL_NORMALIZE);
+```cpp
+glEnable(GL_NORMALIZE);
+// drawing code...
+glDisable(GL_NORMALIZE);
+```
 
 You can also opt for `GL_RESCALE_NORMALS` instead which is more efficient. However, it will go horribly wrong if your model-view matrix has a non-uniform scale transformation. (Basically, only use it if you’ve scaled your matrix by the same amount on all 3 axes.)
-
-<!--kg-card-end: markdown-->

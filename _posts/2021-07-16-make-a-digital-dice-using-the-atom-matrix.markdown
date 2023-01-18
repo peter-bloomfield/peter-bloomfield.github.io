@@ -35,7 +35,7 @@ Feel free to dive straight in if you're comfortable reading C++/Arduino code. Al
 
 Every Arduino sketch needs to have a function called `setup()`. It gets called once when the device is powered-on or reset, and is typically use to initialise a few things. Ours looks like this:
 
-```c++
+```cpp
 void setup()
 {
   M5.begin(false, false, true);
@@ -57,7 +57,7 @@ The second thing we're doing in the setup function is clearing the matrix displa
 
 Every Arduino sketch also needs a `loop()` function. After `setup()` has finished, `loop()` gets called repeatedly until the device is powered-off or reset. Our loop function looks like this:
 
-```c++
+```cpp
 void loop()
 {
   if (M5.Btn.wasPressed())
@@ -108,7 +108,7 @@ Note that the `drawpix()` function can also take X,Y coordinates instead of a si
 
 The second thing we do when the button is released is to draw a new random number on the matrix using our chosen foreground colour. This actually involves two steps: picking a random number and then drawing it. However, we do it all in one line like this:
 
-```c++
+```cpp
 drawNumber(getRandomDiceRoll(), g_foregroundColour);
 ```
 
@@ -126,7 +126,7 @@ Microcontrollers like the ESP32 (which the ATOM Matrix is built on) can go into 
 
 The first of our custom functions is called `getRandomDiceRoll()`. It just gets a random integer between 1 and 6 (inclusive). It's implemented like this:
 
-```c++
+```cpp
 uint8_t getRandomDiceRoll()
 {
   return (analogRead(32) % 6) + 1;
@@ -149,7 +149,7 @@ At this stage, it's important to note that the voltage fluctuations on a floatin
 
 Our second custom function is a very important one: it's called `drawNumber()` and it displays our random number on the matrix. It's implemented like this:
 
-```c++
+```cpp
 void drawNumber(const uint8_t number, const CRGB colour)
 {
   switch (number)
@@ -200,7 +200,7 @@ It takes two parameters: the number you want to draw, and the colour you want to
 
 For example, here's the block for the number 4:
 
-```c++
+```cpp
     case 4:
         M5.dis.drawpix(6, colour);
         M5.dis.drawpix(8, colour);
@@ -215,7 +215,7 @@ That sets pixels 6, 8, 16, and 18 to the foreground colour, which makes it look 
 
 It's easy to change the foreground and background colours if you like. Look for variables called `g_foregroundColour` and `g_backgroundColour` declared near the top of the code:
 
-```c++
+```cpp
 const CRGB g_foregroundColour{ 0xffffff };
 
 const CRGB g_backgroundColour{ 0x003300 };

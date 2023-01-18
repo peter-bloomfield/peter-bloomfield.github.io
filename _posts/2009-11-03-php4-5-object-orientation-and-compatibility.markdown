@@ -36,12 +36,12 @@ You could probably see a theme emerging with ideas 3-5. In the same light, my fi
 
 Here’s the code which does it:
 
-    $result = @call_user_func(array($classname, 'sloodle_get_plugin_id'));
-    if (!empty($result))
-    {
-      // It's a SLOODLE plugin!
-    }
+```php
+$result = @call_user_func(array($classname, 'sloodle_get_plugin_id'));
+if (!empty($result))
+{
+    // It's a SLOODLE plugin!
+}
+```
 
 Frankly, I think it’s a hideous solution. Executing this code on all declared classes is neither elegant nor efficient. However, for now, it seems to be effective and portable.
-
-<!--kg-card-end: markdown-->

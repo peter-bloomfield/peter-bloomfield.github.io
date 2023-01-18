@@ -28,10 +28,13 @@ However, in this case, that wasn’t the mistake that I had made.
 
 The mistake I made was careless use of light 0 (`GL_LIGHT0`) as an ambient-only light source. Here’s the code I was using just before rendering my geometry:
 
-    glEnable(GL_LIGHT0);
-    glLight4f(GL_LIGHT0, GL_AMBIENT, 0.2f, 0.2f, 0.2f, 1.0f);
+```cpp
+glEnable(GL_LIGHT0);
+glLight4f(GL_LIGHT0, GL_AMBIENT, 0.2f, 0.2f, 0.2f, 1.0f);
+```
 
-(Note: `glLight4f()` is not a standard OpenGL function. It’s a wrapper I wrote to make lights a little easier to specify. It simply puts the 4 float values into an array and then calls `glLightfv()`.)
+> `glLight4f()` is not a standard OpenGL function in the C API. It’s a wrapper I wrote to make lights a little easier to specify. It simply puts the 4 float values into an array and then calls `glLightfv()`.
+{: .prompt-info }
 
 The problem is that light 0 is unique in having a default diffuse setting of fully bright white (1,1,1,1). In contrast, all other lights have a default diffuse setting of totally dark (0,0,0,1).
 
@@ -43,10 +46,10 @@ The “w” parameter in the light position, which is the 4th component, determi
 
 The most obvious and effective solution is quite simple:
 
-    glLight4f(GL_LIGHT0, GL_DIFFUSE, 0.0f, 0.0f, 0.0f, 1.0f);
+```cpp
+glLight4f(GL_LIGHT0, GL_DIFFUSE, 0.0f, 0.0f, 0.0f, 1.0f);
+```
 
 Just add that line after the light is enabled, or perhaps even do it once in your initialisation function if you’d prefer. That prevents light 0 from having any diffuse influence as a point/directional source.
 
 If you are specifying specular attributes in your polygon materials, then you’ll need to do the same for light 0’s specular colour. This is because its default specular colour is 1,1,1,1 as well.
-
-<!--kg-card-end: markdown-->

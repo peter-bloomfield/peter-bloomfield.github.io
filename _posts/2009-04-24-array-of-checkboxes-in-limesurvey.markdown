@@ -16,13 +16,15 @@ However, after discussion with a very helpful statistics guru here at <acronym t
 
 Here’s the kind of question I was hoping to display:
 
-    Q: Which of these features have you used as a student and/or as a teacher?
-    
-                 Student Teacher
-    1. Forum [] []
-    2. Chatroom [] []
-    3. Wiki [] []
-    4. Quiz [] []
+```
+Q: Which of these features have you used as a student and/or as a teacher?
+
+               Student   Teacher
+1. Forum       []        []
+2. Chatroom    []        []
+3. Wiki        []        []
+4. Quiz        []        []
+```
 
 It’s like the “array” question type, but each `[]` is a checkbox instead of a radio button. I’m basically tracking two independent boolean variables for each category, instead of a single variable on a scale.
 
@@ -38,5 +40,3 @@ After some very helpful (and very prompt) support on the LimeSurvey forums, it t
 6. Click “Add question”
 
 And that’s it! It’s not immediately obvious at first, but pretty easy once you know how. You might find that the checkboxes take up a lot of room if you only have a few. For 2 columns of checkboxes, I found that an “answer\_width” of 50 (under the question attributes) made the layout a little better.
-
-<!--kg-card-end: markdown-->
