@@ -5,6 +5,8 @@ date: '2013-05-08 13:31:32'
 tags:
 - cpp
 - optimisation
+redirect_from:
+- /understanding-cpp11-move-semantics
 ---
 
 If you're a programmer, you'll hopefully be familiar with the difference between making a copy of an object and making a reference (or a pointer) to it. The former duplicates the data, resulting in two independent instances. The latter allows the same original data to be accessed in two different ways. These concepts are common to many languages, and are essential to passing and returning data in your program.

@@ -5,6 +5,8 @@ date: '2008-02-03 23:20:35'
 tags:
 - cpp
 - visual-studio
+redirect_from:
+- /tracing-memory-leaks-in-c-microsoft-specific
 ---
 
 While working on a personal project, I ran across the ability to track memory leaks down to the exact line of source code in Visual C++. This works with Visual Studio 2005 (I was using the Express Edition), although it may work in more recent versions too.

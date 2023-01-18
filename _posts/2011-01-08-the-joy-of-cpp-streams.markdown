@@ -4,6 +4,8 @@ title: The joy of C++ streams
 date: '2011-01-08 02:15:32'
 tags:
 - cpp
+redirect_from:
+- /the-joy-of-cpp-streams
 ---
 
 Programmers sometimes complain about how poorly C++ handles strings. The unfortunate reality is that a language with such direct memory access as C++ can’t realistically handle variable-length strings natively. This is because stack memory usage absolutely must be fixed at compile-time. Or, in simpler terms, you can’t expect to fit an unpredictably large peg into a small hole.

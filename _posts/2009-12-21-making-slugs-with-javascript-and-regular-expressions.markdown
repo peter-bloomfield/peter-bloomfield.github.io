@@ -4,6 +4,8 @@ title: Making slugs with JavaScript and regular expressions
 date: '2009-12-21 15:05:42'
 tags:
 - javascript
+redirect_from:
+- /making-slugs-with-javascript-and-regular-expressions
 ---
 
 You will sometimes want to generate a suitable URL ‘slug’ based on something the user has entered, such as the name of a blog post, or perhaps the name of a file which is being uploaded.

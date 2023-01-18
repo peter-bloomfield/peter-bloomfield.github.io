@@ -5,6 +5,7 @@ date: '2009-11-06 00:14:20'
 tags:
 - opengl
 redirect_from:
+- /opengl-gotcha-remember-light-0
 - /opengl-gotcha-remember-gl_light0
 ---
 

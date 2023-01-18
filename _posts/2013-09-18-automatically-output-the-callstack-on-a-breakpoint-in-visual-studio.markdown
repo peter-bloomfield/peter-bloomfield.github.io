@@ -6,6 +6,8 @@ tags:
 - visual-studio
 - cpp
 - debugging
+redirect_from:
+- /automatically-output-the-callstack-on-a-breakpoint-in-visual-studio
 ---
 
 When you’re dealing with a large program and multiple developers, it’s not always obvious how and when certain things get executed. One of the very useful ways to debug unexpected behaviour is to set a [breakpoint](https://en.wikipedia.org/wiki/Breakpoint) on a suspect line of code and examine the [callstack](https://en.wikipedia.org/wiki/Call_stack) (or [stack trace](https://en.wikipedia.org/wiki/Stack_trace)) when it gets hit to see the execution path.

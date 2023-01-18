@@ -5,6 +5,8 @@ date: '2015-10-22 11:59:50'
 tags:
 - batch
 - windows
+redirect_from:
+- /emit-audible-warning-from-a-batch-script
 ---
 
 Windows Batch (\*.bat) scripting is archaic and painful, but occasionally useful for quick bits of environment setup. It’s not always obvious to the user when something has gone wrong though as it’s easy to lose the information amidst other text which scrolls by. An audible warning can be a useful alternative to draw attention to a problem.

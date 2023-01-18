@@ -4,6 +4,8 @@ title: Even Powers and Odd Numbers
 date: '2009-02-08 02:04:51'
 tags:
 - maths
+redirect_from:
+- /even-powers-and-odd-numbers
 ---
 
 This is a very simple mathematical relationship I found out about recently and which I rather like. I don’t claim to be original here. I'm sure it’s been covered by many people before me.

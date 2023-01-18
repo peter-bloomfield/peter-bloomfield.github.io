@@ -7,6 +7,8 @@ tags:
 - best-practices
 - unit-tests
 - guidelines
+redirect_from:
+- /how-to-write-a-good-unit-test
 ---
 
 When used correctly, [unit testing](https://en.wikipedia.org/wiki/Unit_testing) can be valuable for ensuring the long-term quality and correctness of your code. However, it's a skill which can take time and discipline to do well, even if you're already an adept programmer. In this post, I'll outline some of the key guidelines which I've found helpful for writing good unit tests.

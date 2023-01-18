@@ -6,6 +6,8 @@ tags:
 - cmake
 - cpp
 - visual-studio
+redirect_from:
+- /percent-sign-in-preprocessor-definition-breaks-cmake-visual-studio-generator
 ---
 
 I recently found a minor but frustrating problem while working on a cross-platform C++ project. In my CMake configuration file, I was trying to declare a preprocessor definition containing a date format string. The build worked on macOS using apple-clang/Xcode but it failed on Windows using MSVC/Visual Studio.

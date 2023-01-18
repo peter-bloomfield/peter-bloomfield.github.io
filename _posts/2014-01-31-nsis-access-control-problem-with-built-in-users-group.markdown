@@ -5,6 +5,8 @@ date: '2014-01-31 21:19:41'
 tags:
 - windows
 - nsis
+redirect_from:
+- /nsis-access-control-problem-with-built-in-users-group
 ---
 
 I was dealing with a subtle issue recently involving setting access permissions on Windows using [NSIS](http://nsis.sourceforge.net "Click to visit the NSIS webpage") (Nullsoft Scriptable Install System). It turned out that the problem was not with NSIS at all. Rather, it was a misunderstanding on my part regarding an unexpected quirk in Windows. Hopefully this post will help anybody who encounters a similar issue.

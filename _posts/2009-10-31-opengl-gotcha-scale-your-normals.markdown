@@ -4,6 +4,8 @@ title: 'OpenGL gotcha: scale your normals!'
 date: '2009-10-31 01:22:44'
 tags:
 - opengl
+redirect_from:
+- /opengl-gotcha-scale-your-normals
 ---
 
 My OpenGL blunder this evening involved forgetting to make sure my normals were scaled correctly.

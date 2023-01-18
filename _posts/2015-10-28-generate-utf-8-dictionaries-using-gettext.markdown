@@ -5,6 +5,8 @@ date: '2015-10-28 18:35:11'
 tags:
 - localisation
 - unicode
+redirect_from:
+- /generate-utf-8-dictionaries-using-gettext
 ---
 
 I’ve been setting up localisation for an application using a combination of tools: the [Boost Locale](http://www.boost.org/doc/libs/release/libs/locale) library and the widely used [gettext](https://www.gnu.org/software/gettext/) tools. I’m wanting to work entirely in UTF-8 because it should be suitable for pretty much any language we’re likely to need, and it should hopefully avoid problems of mixing encodings. However, I found that the tools kept falling-back to outdated character sets instead.

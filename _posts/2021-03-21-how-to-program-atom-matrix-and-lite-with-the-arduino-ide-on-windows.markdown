@@ -5,6 +5,8 @@ date: '2021-03-21 16:22:56'
 tags:
 - arduino
 - embedded
+redirect_from:
+- /how-to-program-atom-matrix-and-lite-with-the-arduino-ide-on-windows
 ---
 
 The [ATOM Matrix](https://docs.m5stack.com/#/en/core/atom_matrix) and [ATOM Lite](https://docs.m5stack.com/#/en/core/atom_lite) are fun little [ESP32](https://en.wikipedia.org/wiki/ESP32)-based development kits from [M5Stack](https://m5stack.com/). They can be programmed from the Arduino IDE, although the official instructions for doing that weren't very good when I was getting started. In this post, I'll document the steps which worked for me on Windows 10.

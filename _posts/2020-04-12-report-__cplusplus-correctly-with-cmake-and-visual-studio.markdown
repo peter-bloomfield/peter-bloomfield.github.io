@@ -6,6 +6,8 @@ tags:
 - cmake
 - cpp
 - visual-studio
+redirect_from:
+- /report-__cplusplus-correctly-with-cmake-and-visual-studio
 ---
 
 Some C++ projects use the [`_cplusplus` predefined macro](https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros) to determine which language features the compiler supports. However, by default, the Microsoft Visual C++ compiler still reports a very old value, even if you're explicitly using a modern C++ standard. This can occasionally cause some problems, such as libraries omitting certain API features.

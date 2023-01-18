@@ -6,6 +6,7 @@ tags:
 - cpp
 - windows
 redirect_from:
+- /introduction-to-win32-named-pipes-cpp
 - /introduction-to-win32-named-pips-cpp
 ---
 

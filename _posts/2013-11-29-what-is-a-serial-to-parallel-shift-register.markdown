@@ -5,6 +5,8 @@ date: '2013-11-29 15:09:34'
 tags:
 - electronics
 - raspberry-pi
+redirect_from:
+- /what-is-a-serial-to-parallel-shift-register
 ---
 
 A serial-to-parallel shift register (or SIPO: Serial In Parallel Out) lets you take a series of signals on one output and split them up into several separate outputs in parallel. For example, if you don’t have enough GPIO pins on your Raspberry Pi, Arduino, or other computer/microcontroller, you may be able to use a shift register to add more.

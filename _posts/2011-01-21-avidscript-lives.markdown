@@ -4,6 +4,8 @@ title: avidscript lives!
 date: '2011-01-21 21:17:41'
 tags:
 - compilers
+redirect_from:
+- /avidscript-lives
 ---
 
 As I’ve mentioned on some recent posts, I’ve been working on developing my own compiler and virtual machine lately. And finally, it lives! It’s taken 5 months, with some language revisions along the way, but I have set out what I intended to achieve: a custom programming language, compiled down to bytecode, running in a virtual machine.

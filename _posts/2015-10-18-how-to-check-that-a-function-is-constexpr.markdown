@@ -5,6 +5,8 @@ date: '2015-10-18 09:34:34'
 tags:
 - cpp
 - unit-tests
+redirect_from:
+- /how-to-check-that-a-function-is-constexpr
 ---
 
 I was implementing a number of simple [`constexpr` functions]({% post_url 2015-10-18-cpp-constexpr-functions %}) in a recent C++ project. While writing unit tests alongside it, I quickly realised that it would be very helpful to have code which verifies that a `constexpr` function can actually be evaluated at compile-time. It turns out that it’s remarkably easy to do.

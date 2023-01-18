@@ -5,6 +5,8 @@ date: '2010-01-21 02:14:58'
 tags:
 - php
 - databases
+redirect_from:
+- /adodb-function-getupdatesql
 ---
 
 I have been getting myself familiar with [ADOdb](http://adodb.org) by using it in a personal web-development project. During my experiments, I ran across a member function called `GetUpdateSQL()`. In principle, it looks like a very useful function. Given a recordset which you’ve previously retrieved in a query, and given some desired changes, it will generate an UPDATE query string for you. However, I have found it to be a little disappointing for my needs.

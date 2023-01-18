@@ -4,6 +4,8 @@ title: Pure virtual final functions in C++
 date: '2015-10-05 18:06:24'
 tags:
 - cpp
+redirect_from:
+- /pure-virtual-abstract-final-functions-in-cpp
 ---
 
 Today I ran across an interesting little quirk of C++11. You can declare a pure virtual function which has no implementation and which is `final`. That means the class can never be instantiated or inherited, and the function will never have a body.

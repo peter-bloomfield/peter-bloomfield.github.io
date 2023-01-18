@@ -5,6 +5,8 @@ date: '2019-07-18 19:50:00'
 tags:
 - cmake
 - conan
+redirect_from:
+- /path-error-when-building-with-conan-and-cmake
 ---
 
 I recently encountered a mysterious path error when attempting to build a C++ project on Windows using [Conan](https://conan.io/) and [CMake](https://cmake.org/). The main error message wasn’t particularly helpful though:

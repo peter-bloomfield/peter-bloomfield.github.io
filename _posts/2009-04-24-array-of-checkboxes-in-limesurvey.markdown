@@ -4,6 +4,8 @@ title: Array of Checkboxes in LimeSurvey
 date: '2009-04-24 14:29:13'
 tags:
 - research
+redirect_from:
+- /array-of-checkboxes-in-limesurvey
 ---
 
 I’m using [LimeSurvey](https://www.limesurvey.org) to setup and conduct a survey as part of my PhD, and it’s working very well. (Great work, LimeSurvey developers!) It’s free and open source, and since I have my own server I can host the survey myself at no additional expense. That wouldn’t be the case if I used something like SurveyMonkey.

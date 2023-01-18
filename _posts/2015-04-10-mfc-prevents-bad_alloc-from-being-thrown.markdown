@@ -4,6 +4,8 @@ title: MFC prevents bad_alloc from being thrown
 date: '2015-04-10 19:05:12'
 tags:
 - cpp
+redirect_from:
+- /mfc-prevents-bad_alloc-from-being-thrown
 ---
 
 According to the C++ standard, the `new` operator should throw `std::bad_alloc` if it fails. This will typically happen if your process has run out of memory. However, this isn’t the case if your program uses the (rather outdated) [Microsoft Foundation Class](https://docs.microsoft.com/en-us/cpp/mfc/mfc-desktop-applications) library. In this post, we’ll look at what’s going on, and what you can do about it.

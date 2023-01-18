@@ -4,6 +4,8 @@ title: Convert a number to a binary string (and back) in C++
 date: '2015-02-19 20:04:18'
 tags:
 - cpp
+redirect_from:
+- /convert-a-number-to-a-binary-string-and-back-in-cpp
 ---
 
 Sometimes it’s useful to output the binary representation of a number in text, i.e. as an ASCII string of 0’s and 1’s. There are also situations where you might want convert back the other way, e.g. if you want to let a user enter a binary string manually. The [bitset](http://www.cplusplus.com/reference/bitset/bitset/) class in C++ makes this surprisingly quick and easy.

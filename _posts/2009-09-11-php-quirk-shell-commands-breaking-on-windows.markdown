@@ -5,6 +5,8 @@ date: '2009-09-11 13:04:01'
 tags:
 - php
 - windows
+redirect_from:
+- /php-quirk-shell-commands-breaking-on-windows
 ---
 
 I’ve been wrestling with many compatibility quirks in the open source [SLOODLE project](http://www.sloodle.org) lately, and this one certainly deserves some kind of prize for awkwardness. It seems that some perfectly valid shell commands will simply not work when executed from within PHP on Windows.
