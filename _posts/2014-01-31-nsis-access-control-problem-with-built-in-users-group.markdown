@@ -4,7 +4,6 @@ title: NSIS Access Control problem with built-in users group
 date: '2014-01-31 21:19:41'
 tags:
 - windows
-- nsis
 redirect_from:
 - /nsis-access-control-problem-with-built-in-users-group
 ---

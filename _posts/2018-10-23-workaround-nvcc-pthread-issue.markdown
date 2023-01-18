@@ -4,7 +4,6 @@ title: Workaround for nvcc pthread issue
 date: '2018-10-23 14:03:04'
 tags:
 - cmake
-- cuda
 - cpp
 redirect_from:
 - /workaround-nvcc-pthread-issue

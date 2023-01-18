@@ -2,8 +2,6 @@
 layout: post
 title: Array of Checkboxes in LimeSurvey
 date: '2009-04-24 14:29:13'
-tags:
-- research
 redirect_from:
 - /array-of-checkboxes-in-limesurvey
 ---

@@ -2,9 +2,6 @@
 layout: post
 title: Importing email folders into Gmail
 date: '2018-10-07 10:30:04'
-tags:
-- email
-- google
 redirect_from:
 - /importing-email-folders-into-gmail
 ---

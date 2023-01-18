@@ -3,7 +3,6 @@ layout: post
 title: Emit audible warning from a batch script
 date: '2015-10-22 11:59:50'
 tags:
-- batch
 - windows
 redirect_from:
 - /emit-audible-warning-from-a-batch-script

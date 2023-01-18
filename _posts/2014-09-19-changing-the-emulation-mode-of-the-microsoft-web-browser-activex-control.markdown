@@ -4,7 +4,6 @@ title: Changing the emulation mode of the Microsoft Web Browser ActiveX control
 date: '2014-09-19 18:12:27'
 tags:
 - windows
-- mfc
 redirect_from:
 - /changing-the-emulation-mode-of-the-microsoft-web-browser-activex-control
 ---
