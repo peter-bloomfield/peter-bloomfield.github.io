@@ -7,6 +7,7 @@ tags:
 - cpp
 redirect_from:
 - /fixing-lnk4098-in-visual-cpp
+- /fixing-lnk4098-in-visual-c
 ---
 
 Like many C++ linker errors and warnings, LNK4098 is a little vague and cryptic at first. It comes in different flavours, but it will often have other errors with it, such as LNK2005 (“symbol already defined”). Here’s one I got recently in VC++ 2010 Express:
