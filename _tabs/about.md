@@ -1,18 +1,18 @@
 ---
-# the default layout is 'page'
+title: About
 icon: fas fa-info-circle
 order: 1
 redirect_from:
-- /about-me
-- /career
-- /job-history
-- /qualifications
-- /portfolio
-- /research
-- /music
-- /contact
-- /contact-me
-- /author
+  - /about-me
+  - /career
+  - /job-history
+  - /qualifications
+  - /portfolio
+  - /research
+  - /contact
+  - /contact-me
+  - /author
+description: Who I am, what I do, and what this blog is all about
 ---
 
 
