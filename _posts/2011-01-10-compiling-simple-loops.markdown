@@ -6,6 +6,7 @@ tags:
 - compilers
 redirect_from:
 - /compiling-simple-loops
+- /compiling-simple-loops/
 ---
 
 I program weird stuff to unwind. Lately, my pet project has been a custom programming language which I’m calling “avidscript”. It's a somewhat C-style procedural language which compiles down to bytecode.

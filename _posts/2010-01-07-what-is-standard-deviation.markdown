@@ -6,6 +6,7 @@ tags:
 - maths
 redirect_from:
 - /what-is-standard-deviation
+- /what-is-standard-deviation/
 ---
 
 The term “Standard Deviation” comes up quite a lot in research, statistics, and data analysis. But what exactly does tell us, why it is interesting, and how does it work?

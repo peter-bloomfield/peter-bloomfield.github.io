@@ -6,6 +6,7 @@ tags:
 - cpp
 redirect_from:
 - /cpp11-auto-variables
+- /cpp11-auto-variables/
 ---
 
 The C++11 standard introduced the `auto` keyword for type deduction. One of its main uses is to make variable declarations more concise. It can also improve the maintainability of code if used correctly as it can reduce redundancy. This post will give an overview of what it does and how to use it.

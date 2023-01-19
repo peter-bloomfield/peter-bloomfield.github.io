@@ -4,6 +4,7 @@ title: DNS misconfiguration in Plesk
 date: '2010-11-06 02:18:32'
 redirect_from:
 - /dns-misconfiguration-in-plesk
+- /dns-misconfiguration-in-plesk/
 ---
 
 I run a VPS (Virtual Private Server) through the 1&1 webhost, and was trying to create a new subdomain today using the Plesk 9.5.2 admin interface. This is an easy task which I have done many times before, but this time it failed, and gave me the following error message:

@@ -8,6 +8,7 @@ tags:
 - visual-studio
 redirect_from:
 - /improve-cpp-performance-in-debug-mode-with-inline-expansion
+- /improve-cpp-performance-in-debug-mode-with-inline-expansion/
 ---
 
 When you’re dealing with an intensive real-time application, such as a game or simulation, a common problem is that debug builds in C++ can run much slower than release builds. This difference in run-time behaviour means it can be hard to reproduce and analyse bugs and other problems. There are several things you can do to improve it, and one which helped me recently was enabling inline expansion.

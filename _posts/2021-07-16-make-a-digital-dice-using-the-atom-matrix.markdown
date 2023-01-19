@@ -8,6 +8,7 @@ tags:
 - embedded
 redirect_from:
 - /make-a-digital-dice-using-the-atom-matrix
+- /make-a-digital-dice-using-the-atom-matrix/
 ---
 
 The ATOM Matrix includes a built-in 5x5 pixel RGB display, and the whole body acts as a button. This makes it great for acting as a digital 6-sided dice. In this post, I'll show you how to do that using the standard M5Atom library for Arduino.

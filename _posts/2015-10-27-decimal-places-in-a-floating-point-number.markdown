@@ -7,6 +7,7 @@ tags:
 - cpp
 redirect_from:
 - /decimal-places-in-a-floating-point-number
+- /decimal-places-in-a-floating-point-number/
 ---
 
 Floating point numbers are a mainstay of programming in areas such as games, graphics, and simulation. On the whole, they are easy and intuitive to use. However, they have certain quirks and issues to be aware of. For example, their representation is inherently flexible and often approximate. This means there isn't a simple answer to the question of how many decimal places they can hold.

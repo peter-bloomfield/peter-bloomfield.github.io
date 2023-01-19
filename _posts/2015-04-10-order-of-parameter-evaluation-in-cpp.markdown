@@ -6,6 +6,7 @@ tags:
 - cpp
 redirect_from:
 - /order-of-parameter-evaluation-in-cpp
+- /order-of-parameter-evaluation-in-cpp/
 ---
 
 The low-level details of how data gets passed into a function are often overlooked by programmers. We obviously care about passing parameters by value vs. reference and by copy vs. move, but it’s easy to ignore anything deeper than that.

@@ -4,6 +4,7 @@ title: Running chapter headers in Microsoft Word
 date: '2012-03-18 15:31:42'
 redirect_from:
 - /running-chapter-headers-in-microsoft-word
+- /running-chapter-headers-in-microsoft-word/
 ---
 
 I’m in the process of writing up my doctoral thesis, and have had to wrestle with a lot of Word formatting. The biggest difficulty I had was separating the whole document into chapters. I wanted each chapter to start with a big heading like “Chapter 1 Introduction”, and to have that title repeated in the header of each subsequent page; i.e. running chapter headers throughout the document. It’s quite fiddly to do, but very useful once you’ve got it setup.

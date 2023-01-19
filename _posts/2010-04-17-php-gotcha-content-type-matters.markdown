@@ -6,6 +6,7 @@ tags:
 - php
 redirect_from:
 - /php-gotcha-content-type-matters
+- /php-gotcha-content-type-matters/
 ---
 
 I encountered a frustrating problem regarding HTTP content type headers today. It massively broke the design of my site in Firefox, but didn’t seem to affect anything in Internet Explorer. The lesson learned is to be careful where you set the Content-Type header in PHP.

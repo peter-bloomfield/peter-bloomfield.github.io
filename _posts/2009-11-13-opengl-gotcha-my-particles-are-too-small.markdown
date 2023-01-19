@@ -6,6 +6,7 @@ tags:
 - opengl
 redirect_from:
 - /opengl-gotcha-my-particles-are-too-small
+- /opengl-gotcha-my-particles-are-too-small/
 ---
 
 As graphical effects go, a particle system is one of the most versatile. It can be used to simulate things like electrical sparks, dust clouds, smoke, fire, and water. However, there is one problem which I have been annoyed by several times in the past, but just lived-with because I didn’t think it important enough to fix.

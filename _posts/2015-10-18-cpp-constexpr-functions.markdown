@@ -6,6 +6,7 @@ tags:
 - cpp
 redirect_from:
 - /cpp-constexpr-functions
+- /cpp-constexpr-functions/
 ---
 
 I’ve been very excited to see that Visual Studio 2015 supports the `constexpr` keyword in C++. It was introduced in the C++11 standard, and is being taken further in upcoming revisions.

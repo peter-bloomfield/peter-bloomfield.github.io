@@ -6,6 +6,7 @@ tags:
 - cpp
 redirect_from:
 - /using-cpp-templates-for-size-based-type-selection
+- /using-cpp-templates-for-size-based-type-selection/
 ---
 
 The standardisation of size-specific integer types in C/C++ is extremely useful for portability. That is, when you use types like `uint16_t` and `int32_t`, you know exactly what size of data type you’re getting (assuming your compiler supports it). This isn’t the case with the more traditional types like `short` and `int` whose sizes can vary from one compiler to another.

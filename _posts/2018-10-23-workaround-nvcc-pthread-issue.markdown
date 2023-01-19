@@ -7,6 +7,7 @@ tags:
 - cpp
 redirect_from:
 - /workaround-nvcc-pthread-issue
+- /workaround-nvcc-pthread-issue/
 ---
 
 I recently upgraded various pieces of software on my work PC. Afterwards, I found that our C++/CUDA projects wouldn’t build. The following error was reported:

@@ -7,7 +7,9 @@ tags:
 - windows
 redirect_from:
 - /introduction-to-win32-named-pipes-cpp
+- /introduction-to-win32-named-pipes-cpp/
 - /introduction-to-win32-named-pips-cpp
+- /introduction-to-win32-named-pips-cpp/
 ---
 
 There are times when it’s extremely useful to be able to pass some data between different programs running on the same system. For example, you might have multiple programs forming part of the same package, and they need to share some important information or work together to process something.

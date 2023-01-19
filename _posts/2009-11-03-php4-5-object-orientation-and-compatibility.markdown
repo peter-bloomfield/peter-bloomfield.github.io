@@ -6,6 +6,7 @@ tags:
 - php
 redirect_from:
 - /php4-5-object-orientation-and-compatibility
+- /php4-5-object-orientation-and-compatibility/
 ---
 
 Some compatibility problems were reported following the release of [SLOODLE](http://sloodle.org) 1.0, and they largely appear to centre around the object-oriented plugin system I developed for the Presenter module.

@@ -6,6 +6,7 @@ tags:
 - opengl
 redirect_from:
 - /opengl-gotcha-mipmaps-only-please
+- /opengl-gotcha-mipmaps-only-please/
 ---
 
 Here’s an OpenGL gotcha which caught me out for quite a while. I was writing code to load textures, but it only worked if I was using the GLU function to build mipmaps. Loading standard textures kept failing. After lots of frustration, I eventually found my mistake.

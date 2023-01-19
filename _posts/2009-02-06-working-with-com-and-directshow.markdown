@@ -7,6 +7,7 @@ tags:
 - windows
 redirect_from:
 - /working-with-com-and-directshow
+- /working-with-com-and-directshow/
 ---
 
 I’m doing some work with webcams just now, and in the pursuit of efficiency, I am turning to DirectShow. That’s the part of Microsoft’s [DirectX](http://en.wikipedia.org/wiki/DirectX) which handles things like videos and webcams.

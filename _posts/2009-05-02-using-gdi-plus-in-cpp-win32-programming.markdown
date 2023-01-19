@@ -7,6 +7,7 @@ tags:
 - windows
 redirect_from:
 - /using-gdi-plus-in-cpp-win32-programming
+- /using-gdi-plus-in-cpp-win32-programming/
 ---
 
 If you do any Win32 programming in C++ then I strongly recommend you learn about GDI+. Although it’s been around for a while now, it doesn’t seem to be well known. It can be great to have on hand even just to illustrate tests and prototypes though.

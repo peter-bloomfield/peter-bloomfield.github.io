@@ -6,6 +6,7 @@ tags:
 - windows
 redirect_from:
 - /changing-the-emulation-mode-of-the-microsoft-web-browser-activex-control
+- /changing-the-emulation-mode-of-the-microsoft-web-browser-activex-control/
 ---
 
 I’ve been working on an MFC project which embeds a basic web-browser component in a dialog. It does this using a Microsoft Web Browser ActiveX component. The control should hook into whatever version of Internet Explorer (IE) is running on the system. However, it always seemed to fall-back on IE7 emulation mode for me, meaning a lot of modern standards-compliant HTML wasn't being displayed properly.

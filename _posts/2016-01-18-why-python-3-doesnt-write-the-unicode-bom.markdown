@@ -7,6 +7,7 @@ tags:
 - unicode
 redirect_from:
 - /why-python-3-doesnt-write-the-unicode-bom
+- /why-python-3-doesnt-write-the-unicode-bom/
 ---
 
 I’ve been using Python scripts to automatically edit and output Windows Resource files (.rc) for C++ projects in Visual Studio 2013. When handling Unicode, Windows and Visual Studio always want little endian UTF-16 encoding, and the resource file should always start with the Unicode BOM (Byte Order Mark). However, despite the promises in the documentation, I found that Python wasn’t outputting the BOM automatically.

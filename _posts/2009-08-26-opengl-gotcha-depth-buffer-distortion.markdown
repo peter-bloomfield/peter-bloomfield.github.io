@@ -6,6 +6,7 @@ tags:
 - opengl
 redirect_from:
 - /opengl-gotcha-depth-buffer-distortion
+- /opengl-gotcha-depth-buffer-distortion/
 ---
 
 While I’m on the topic of OpenGL gotchas, I thought I’d mention another which caught me out a couple of years ago. I was working on some prototypes with some friends, and we encountered some strange visual glitches:

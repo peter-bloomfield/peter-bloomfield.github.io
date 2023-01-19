@@ -7,6 +7,7 @@ tags:
 - visual-studio
 redirect_from:
 - /tracing-memory-leaks-in-c-microsoft-specific
+- /tracing-memory-leaks-in-c-microsoft-specific/
 description: How to track memory leaks back to the original allocation in C++ using Visual Studio.
 ---
 

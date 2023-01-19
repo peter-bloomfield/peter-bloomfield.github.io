@@ -6,6 +6,7 @@ tags:
 - cpp
 redirect_from:
 - /dynamic-types-in-cpp-factories-templates-or-lots-of-switches
+- /dynamic-types-in-cpp-factories-templates-or-lots-of-switches/
 ---
 
 While doing some C++ programming today, I was faced with a design decision. My code had to be able to create and delete objects of various types, dynamically and on-demand at run-time. That’s easy if you’re working with a loosely-typed language such as PHP, but it’s a different story when you’re working with C++.

@@ -6,6 +6,7 @@ tags:
 - opengl
 redirect_from:
 - /opengl-gotcha-scale-your-normals
+- /opengl-gotcha-scale-your-normals/
 ---
 
 My OpenGL blunder this evening involved forgetting to make sure my normals were scaled correctly.

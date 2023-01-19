@@ -4,6 +4,7 @@ title: moodledata location affects Moodle performance
 date: '2010-11-19 11:37:48'
 redirect_from:
 - /moodledata-location-affects-moodle-performance
+- /moodledata-location-affects-moodle-performance/
 ---
 
 I’ve been working with [Moodle](https://moodle.org) for several years now, primarily as part of the [SLOODLE](http://www.sloodle.org) project. However, one thing that has always been a source of frustration is how slow Moodle often seems on my local Windows Vista PC in the office. (Sadly, I don’t have the option of upgrading to Win7.)

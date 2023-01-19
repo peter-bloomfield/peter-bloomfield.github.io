@@ -7,6 +7,7 @@ tags:
 - unicode
 redirect_from:
 - /output-file-encoding-in-python-3
+- /output-file-encoding-in-python-3/
 ---
 
 [Unicode](https://en.wikipedia.org/wiki/Unicode) is very widespread now (for good reason), and one of the great benefits of [Python](https://www.python.org/) 3.x is that it handles Unicode natively. There are different ways to represent Unicode though, so how do you set the file encoding in Python when you’re writing out to file?

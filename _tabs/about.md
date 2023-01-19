@@ -4,14 +4,23 @@ icon: fas fa-info-circle
 order: 1
 redirect_from:
   - /about-me
+  - /about-me/
   - /career
+  - /career/
   - /job-history
+  - /job-history/
   - /qualifications
+  - /qualifications/
   - /portfolio
+  - /portfolio/
   - /research
+  - /research/
   - /contact
+  - /contact/
   - /contact-me
+  - /contact-me/
   - /author
+  - /author/
 description: Who I am, what I do, and what this blog is all about
 ---
 

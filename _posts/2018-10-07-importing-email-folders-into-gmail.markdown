@@ -4,6 +4,7 @@ title: Importing email folders into Gmail
 date: '2018-10-07 10:30:04'
 redirect_from:
 - /importing-email-folders-into-gmail
+- /importing-email-folders-into-gmail/
 ---
 
 Google has some useful documentation about [importing emails into Gmail](https://support.google.com/mail/answer/21289) via POP. However, the instructions don’t work very well if the messages in your old account are organised into folders. You will only end up importing messages which are directly in your inbox. I have found a few solutions though which I will outline in this post.
