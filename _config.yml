@@ -27,7 +27,7 @@ description: >-                        # used by seo meta and the atom feed
   A personal blog about software engineering and other geeky stuff.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''
+url: 'https://bloomfield.online'
 
 github:
   username: peter-bloomfield             # change to your github username
