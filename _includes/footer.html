@@ -11,6 +11,8 @@
             <span data-toggle="tooltip" data-placement="top"
               title="{{ site.data.locales[site.lang].copyright.verbose }}">{{ site.data.locales[site.lang].copyright.brief }}</span>
             {% endif %}
+            <br>
+            <a href="{% link privacy-policy.markdown %}">Privacy policy.</a>
           </p>
         </div>
   
@@ -35,6 +37,4 @@
     </div>
   </footer>
 
-{% if site.environment == "production" %}
-<script data-goatcounter="https://peter-bloomfield.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-{% endif %}
+<script data-goatcounter="https://bloomfield.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
