@@ -16,10 +16,6 @@ redirect_from:
   - /portfolio/
   - /research
   - /research/
-  - /contact
-  - /contact/
-  - /contact-me
-  - /contact-me/
   - /author
   - /author/
 description: Who I am, what I do, and what this blog is all about
@@ -28,6 +24,8 @@ description: Who I am, what I do, and what this blog is all about
 
 ![Photo of Peter Bloomfield](/assets/img/avatar-520x520.jpg){: width="150" height="150" }
 ***Peter Russell Bloomfield** PhD, MBCS, BSc (Hons)*
+
+## Introduction
 
 This website is my personal blog about technical topics related to my job as a software engineer,
 along with anything interesting I encounter in my professional development and personal projects.
@@ -42,7 +40,7 @@ I'm a member of the [British Computer Society](https://www.bcs.org) and
 board games, and attempting DIY (with varying degrees of success!). I also have a crazy beagle who
 keeps me far too busy.
 
-# Job history
+## Job history
 
 - 2022-present: **Principal Software Engineer**, *[Smoothwall](https://www.smoothwall.com/)*
 - 2019-2021: **Staff Software Engineer**, *[Smoothwall](https://www.smoothwall.com/)*
@@ -55,19 +53,19 @@ keeps me far too busy.
 - 2008-2010: **Consultant Technologist**, *[SCET](https://www.scet.co/) (short-term contracts)*
 - 2007-2008: **Research Assistant / Developer**, *[UWS](https://www.uws.ac.uk/)*
 
-# Other experience
+## Other experience
 
 - 2011-2017: **Editorial Board Member**, *[Computer Games Journal](https://www.springer.com/journal/40869)*
 - 2014-2016: **Community moderator**, *[Arduino Stack Exchange](https://arduino.stackexchange.com/)*
 - 2009-2011: **Committee Member**, *Scottish Video Games Archive*
 - 2008-2009: **President**, *Research Students Society at [UWS](http://uws.ac.uk/)*
 
-# Qualifications
+## Qualifications
 
 - **PhD - Computing**, *University of the West of Scotland, 2018*
 - **BSc. Hons (1st Class) - Computer Games Technology**, *University of Paisley, 2007*
 
-# Find me online
+## Find me online
 
 - [LinkedIn](https://www.linkedin.com/in/peterbloomfield)
 - [Twitter](https://twitter.com/prbloomfield)
