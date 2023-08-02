@@ -27,17 +27,13 @@ This website is non-commercial and is not involved in selling or marketing. Howe
 
 ## Hosting
 
-This website is hosted as static content on [GitHub Pages](https://pages.github.com/). GitHub pages does not gather user data or track behaviour at all. However, for reference, the GitHub privacy policies can be found here:
+This website is hosted as static content on [Cloudflare Pages](https://pages.cloudflare.com/), and the traffic is routed via [Cloudflare CDN](https://www.cloudflare.com/application-services/products/cdn/). To the best of my knowledge, Cloudflare does not gather or track personally identifiable information about visitors to my website. However, it may log some general information regarding usage patterns and potential malicious activity. Cloudflare's policies can be found here:
 
-- [https://docs.github.com/en/site-policy/privacy-policies](https://docs.github.com/en/site-policy/privacy-policies)
+- [https://www.cloudflare.com/trust-hub/](https://www.cloudflare.com/trust-hub/)
 
 The source code for this website is available on GitHub here:
 
 - [https://github.com/peter-bloomfield/peter-bloomfield.github.io](https://github.com/peter-bloomfield/peter-bloomfield.github.io)
-
-Traffic to this website is routed via [CloudFlare CDN](https://www.cloudflare.com/). The purpose is to make the website load more quickly for visitors, and to guard against potential Denial of Service attacks. The CloudFlare privacy policy is available here:
-
-- [https://www.cloudflare.com/en-gb/privacypolicy](https://www.cloudflare.com/en-gb/privacypolicy)
 
 ## What personal data I collect and why I collect it
 
